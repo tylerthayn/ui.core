@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Ui/Layout Example</title>
+		<script src="../node_modules/@web/core.js"></script>
+		<style>
+
+html, body {width: 100%;height:100%;margin:0;padding:0}
+
+.View div {border:1px solid red;min-width:50px;min-height:50px;}
+
+.View {width:100%;height:100%;overflow:hidden;}
+.View > .Bar {position:fixed;}
+.View > .Bar.Horizontal {left:0px;width:100%;height:100px;}
+.View > .Bar.Vertical {top:0px;height:100%;width:100px;}
+.View > .Bar.Bottom {bottom:0px}
+.View > .Bar.Left {left:0px}
+.View > .Bar.Right {right:0px}
+.View > .Bar.Top {top:0px}
+
+.Layout {width: 100%;height: 100%;display:flex;flex-wrap:nowrap;justify-content:center;align-items:center;}
+.Layout.Horizontal {flex-direction:row;}
+.Layout.Horizontal > div {height: 100%;}
+.Layout.Vertical {flex-direction:column;}
+.Layout.Vertical > div {width: 100%;}
+.Layout > .Bar {flex-grow:0;flex-shrink:0;}
+.Layout .Exoand {flex-grow:1;flex-shrink:1;}
+		</style>
+	</head>
+	<body class="TTS App" data-name="App">
+
+<div class="View">
+	<div class="Layout Vertical">
+		<div class="Bar Top" style="display:none"></div>
+		<div class="Layout Horizontal Exoand">
+			<div class="Bar Left" style="display:none"></div>
+			<div class="Content Exoand"></div>
+			<div class="Bar Right" style="display:none"></div>
+		</div>
+		<div class="Bar Bottom" style="display:none"></div>
+	</div>
+
+	<div class="Ui Bar Horizontal Top bg-primary" style="display:none" data-type="overlay"></div>
+	<div class="Ui Bar Horizontal Bottom bg-secondary" style="display:none" data-type="overlay"></div>
+	<div class="Ui Bar Vertical Left bg-light" style="display:none" data-type="overlay"></div>
+	<div class="Ui Bar Vertical Right bg-dark" style="display:none" data-type="overlay"></div>
+
+</div>
+
+
+
+	</body>
+</html>
+
+
+
+
+
+

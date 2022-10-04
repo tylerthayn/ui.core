@@ -1,0 +1,24 @@
+<View id="" name="" class="Ui.Panel" module="path/to/module" style="path/to/style.css" src="path/to/html.html">
+	<html><div class="Ui Panel Settings"></div></html>
+	<style>.Ui.Panel.Settings {width:100%;}</style>
+	<script>/* code */</script>
+</View>
+
+<Attributes>
+	<group name="script">
+		<module>require/js/module path to load widget class.  Will load, then continue with class attribute</module>
+		<class>$[class] referenceable, loaded widget class.  Optional if module attribute or script element provided</class>
+	</group>
+	<style>path/to/style.css to load</style>
+	<src>path/to/source.html to load.  Optional if html element is provided.</src>
+</Attributes>
+<elements>
+	<script>code that will be executed after module & class attributes</script>
+	<style>css that will be loaded</style>
+	<html>html to load for the element.  Optional if src attributes is provided</html>
+	<data>View state/options<
+		<type>Base64 block data</type>
+		<type>xml key/value pairs</type>
+		<type>json</type>
+	/data>
+</elements>

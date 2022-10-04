@@ -1,0 +1,20 @@
+{
+  "name": "@tyler.thayn/web.ui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+  	"build": "npm run-script sass && grunt all",
+    "sass": "sass src/styles/Ui.scss src/Ui.css --no-source-map"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "grunt": "^1.5.3",
+    "jsdoc": "^3.6.11",
+    "sass": "^1.55.0"
+  }
+}

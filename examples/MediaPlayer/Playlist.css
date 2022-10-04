@@ -1,0 +1,81 @@
+
+.View.Playlist i {font-size:2em !important;}
+.View.Playlist i.Back {font-size:2.25em;margin-top:7px;margin-left:10px;}
+
+.Playlist .Toolbar{width:100%;border:1px solid #c5c5c5;background-color:#696969;display:flex}
+.Playlist .Toolbar i{font-size:2.5em;margin:5px;width:40px}
+.Playlist .Toolbar i.Inactive{color:#dddddd66}
+.Playlist .Spacer{flex-grow:1}
+.Playlist .List{width:100%;list-style:none;padding:0;font-size:1.2em;}
+.Playlist ul.List{background-color:#a3c1e0;height:calc(100% - 50px);}
+.Playlist .List ul{color:#000}
+.Playlist .List .Item{border:1px solid #000;display:flex}
+.Playlist .List li:nth-child(odd){background-color:#ffffffff}
+.Playlist .List li:nth-child(even){background-color:#ffffffaa}
+.Playlist .List li.Current{background-color:#ff000055;color:#fff!important}
+.Playlist .List .Item div{color:inherit;display:inline-block;border:1px solid #000}
+.Playlist .List .Item .Number{color:inherit;width:40px;min-width:40px;text-align:center}
+.Playlist .List .Item .Title{color:inherit;flex-grow:1;white-space:nowrap;overflow:hidden}
+.Playlist .List .Item .Title div{color:inherit;width:100%;overflow:hidden}
+.Playlist .List .Item .Buttons,.Playlist .List .Item .Time{color:inherit;width:auto;text-align:center}
+.Playlist .List .Item .Time{width:60px}
+
+
+
+/*** Ratings Popup ***/
+.Popup.Rating{z-index:1003;margin-bottom:14px;background-color:#000;}
+.Popup.Rating .Star{display:block;color:#fff}
+.Popup.Rating i:hover{color:red}
+
+.notifyjs-corner {bottom:40px !important;}
+
+
+#Urls textarea{width:100%;height:150px;resize:none}
+.modal{background-color:#222}
+#Lists ul{list-style:none;margin-left:5px;padding-left:5px}
+.ListsCol{vertical-align:top}
+
+.modal .nav-tabs{background:linear-gradient(to bottom,#000 0,#369 25%)}
+.modal .nav-tabs .nav-link:hover,.nav-tabs .nav-link:focus{background-color:transparent}
+.modal .nav-tabs a{color:#fff}
+.modal .nav-tabs a:hover,.nav-tabs a:active,.nav-tabs a:focus{color:red}
+.modal .nav{display:flex;flex-wrap:wrap;padding-left:0;margin-bottom:0;list-style:none}
+.modal .nav-link{display:block;padding:.5rem 1rem}
+.modal .nav-link:hover,.nav-link:focus{text-decoration:none}
+.modal .nav-link.disabled{color:#777;pointer-events:none;cursor:default}
+.modal .nav-tabs{border-bottom:1px solid #dee2e6}
+.modal .nav-tabs .nav-item{margin-bottom:-1px}
+.modal .nav-tabs .nav-link{border:1px solid transparent;border-top-left-radius:.25rem;border-top-right-radius:.25rem}
+.modal .nav-tabs .nav-link:hover,.nav-tabs .nav-link:focus{border-color:transparent}
+.modal .nav-tabs .nav-link.disabled{color:#777;background-color:transparent;border-color:transparent}
+.modal .nav-tabs .nav-item.show .nav-link,.modal .nav-tabs .nav-link.active{color:#495057;background:linear-gradient(to bottom,#000 0,#fff 25%);border-color:#000 #000 #fff}
+.modal .nav-tabs .dropdown-menu{margin-top:-1px;border-top-left-radius:0;border-top-right-radius:0}
+.modal .nav-pills .nav-link{border-radius:.25rem}
+.modal .nav-pills .nav-link.active,.modal .nav-pills .show>.nav-link{color:#fff;background-color:#369}
+.modal .nav-fill .nav-item{flex:1 1 auto;text-align:center}
+.modal .nav-justified .nav-item{flex-basis:0;flex-grow:1;text-align:center}
+.modal .tab-content{border:1px solid #000;border-width:0 1px 1px;border-radius:6px;border-top-left-radius:0;border-top-right-radius:0;padding:5px}
+.modal .tab-pane{height:auto;min-height:200px;width:100%}
+.modal .tab-pane .col{display:inline-block;width:45%}
+.modal .Buttons{width:100%;text-align:center}
+
+
+.modal.Open .tab-content div.ListsCol li {
+	color: black;	
+}
+
+/*
+.patt-holder{-ms-touch-action:none;background:#336699}.patt-wrap{cursor:pointer;position:relative}.patt-wrap li,.patt-wrap ul{list-style:none;margin:0;padding:0}.patt-circ{-moz-box-sizing:border-box;box-sizing:border-box;float:left;position:relative}.patt-circ.hovered{border:3px solid #090}.patt-error .patt-circ.hovered{border:3px solid #ba1b26}.patt-hidden .patt-circ.hovered{border:0}.patt-dots{background:#fff;left:50%;margin-left:-5px;margin-top:-5px;top:50%;width:10px}.patt-dots,.patt-lines{border-radius:5px;height:10px;position:absolute}.patt-lines{-ms-transform-origin:5px 5px;-webkit-transform-origin:5px 5px;background:hsla(0,0%,100%,.7);transform-origin:5px 5px}.patt-hidden .patt-lines{display:none}
+.modal.Login .modal-content {background-color: #336699;}
+#PatternLock {margin-left: calc( calc( 100% - 400px ) / 2 );}
+*/
+
+@media screen and (max-width: 600px) {
+  i {
+    opacity: 0.5;
+  }
+}
+
+
+
+

@@ -1,0 +1,14 @@
+@use 'Layout';
+@use 'Size';
+
+@use 'patternLock';
+@use 'patternlock-theme';
+
+.Ui {
+	&.Hidden {
+		display: none!important;
+	}
+
+	@include Layout.Layout;
+	@include Size.Size;
+}

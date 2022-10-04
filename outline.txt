@@ -1,0 +1,50 @@
+
+jQuery/Data
+jQuery/Height
+jQuery/Value
+jQuery/ValueOf
+jQuery/Width
+Observers/Hidden
+Observers/Mount
+Observers/Resize
+Ui/View => Ui
+Ui/Size
+
+Ui/Collapsible
+Ui/Bars
+	/Top
+	/Bottom
+	/SideBar
+* displayMode: mouse|button (show/hide: based upon mouse locations)
+* displayStyle: overlay|push
+* position: top|bottom & left|right ??corner:2side??
+* effect: slide, fade, fold...
+
+
+Ui/Toolbar
+Ui/PatternLock
+Ui/Screen
+Ui/App
+Ui/Log
+Ui/Console
+
+
+/** View
+* html
+	+ selector for content already in document
+	* src path to html file
+	* template generator function
+
+* js
+	+ class for preloaded/base widgets
+	+ module source path to load with requirejs
+
+* style
+	+ (default) n/a: already loaded or loaded with module or loaded with html
+	* src or class w/ source (lookup before load)
+
+
+<View class="Ui.Bars.Side" module="Ui/Bars/Side" src="path/to/html" selector=".Ui.Bar.Side">
+	<stateProperty>stateValue</stateProperty>
+		...
+</view>

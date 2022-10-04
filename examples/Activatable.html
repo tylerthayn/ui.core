@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Ui/Activatable Example</title>
+		<script src="../node_modules/@web/core.js" data-main="Activatable"></script>
+		<style>
+			.Example {
+				width: 300px;
+				height: 300px;
+			}
+			body * {
+				border: 1px solid black;
+				min-width: 50px;
+				min-height: 50px;
+			}
+			.A {background-color: blue;}
+			.B {background-color: yellow;}
+			.Ui.Activatable.Active {
+				border: 5px solid red;
+			}
+		</style>
+	</head>
+	<body class="TTS App" data-name="App">
+
+		<div class="Example">
+			<div class="A Ui Activatable"></div>
+			<div class="B Ui Activatable"></div>
+		</div>
+
+	</body>
+</html>
+
+
+
+
+
+

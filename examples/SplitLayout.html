@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Ui/Bars Example</title>
+		<script src="../node_modules/@web/core.js" data-main="Bars"></script>
+		<style>
+			.Example {
+				width: 300px;
+				height: 300px;
+			}
+			body * {
+				border: 1px solid black;
+				min-width: 50px;
+				min-height: 50px;
+			}
+html, body {width: 100%;height:100%;margin:0;padding:0}
+* {border: 1px solid red;}
+.View {width:100%;height:100%;overflow:hidden;}
+.Layout {width: 100%;height: 100%;display:flex;flex-wrap:nowrap;justify-content:center;align-items:center;}
+
+.Layout.Split > * {flex-shink:1;flex-grow:1;}
+.Layout.Split.Horizontal {flex-direction:row;}
+.Layout.Split.Vertical {flex-direction:column;}
+.Layout.Split.Horizontal > * {height: 100%;}
+.Layout.Split.Vertical > * {width: 100%;}
+
+.Panel1 {
+
+}
+.Panel2 {
+
+}
+
+		</style>
+	</head>
+	<body class="TTS App" data-name="App">
+
+<div class="View">
+	<div class="Layout Vertical Split">
+		<div class="Panel1"></div>
+		<div class="Panel2"></div>
+	</div>
+</div>
+
+
+
+	</body>
+</html>
+
+
+
+
+
+

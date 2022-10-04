@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Ui/Container Example</title>
+		<script src="../node_modules/@web/core.js" data-main="container"></script>
+		<style>
+			.Example {
+				width: 300px;
+				height: 300px;
+			}
+			body * {
+				border: 1px solid black;
+				min-width: 50px;
+				min-height: 50px;
+			}
+			.A {background-color: blue;}
+			.B {background-color: yellow;}
+		</style>
+	</head>
+	<body class="TTS App" data-name="App">
+
+		<div class="Ui Container Example">
+			<div class="A"></div>
+			<div class="B">
+				<div class="B A"></div>
+			</div>
+		</div>
+
+	</body>
+</html>
+
+
+
+
+
+

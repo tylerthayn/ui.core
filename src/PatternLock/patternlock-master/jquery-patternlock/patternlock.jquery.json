@@ -1,0 +1,36 @@
+{
+	"name": "PatternLock",
+	"title": "Pattern Lock",
+	"description": "Android like pattern lock for web with touch event support",
+	"keywords": [
+		"jquery",
+		"pattern lock",
+		"android"
+	],
+	"version": "1.0.0",
+	"author": {
+		"name": "Bharat Patil",
+		"email": "sun.bharat.patil@gmail.com",
+		"url": "https://github.com/bharatpatil"
+	},
+	"maintainers": [
+		{
+			"name": "Bharat Patil",
+			"email": "sun.bharat.patil@gmail.com",
+			"url": "https://github.com/bharatpatil"
+		},
+		{
+			"name": "Pratik Goenka",
+			"email": "pa.goenka@gmail.com",
+			"url": "https://github.com/pagoenka"
+		}
+	],
+	"licenses": [
+		{
+			"type": "CustomLicense"
+		}
+	],
+	"dependencies": {
+		"jquery": ">=1.9"
+	}
+}
