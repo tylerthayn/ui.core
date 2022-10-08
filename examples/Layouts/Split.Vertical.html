@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Ui/Layout/Split Vertical Example</title>
+		<script class="Main" src="../../node_modules/@web/core.js" data-main="Split.Vertical.js"></script>
+		<script src="../Examples.js"></script>
+		<link rel="stylesheet" href="../Examples.css">
+	</head>
+	<body class="TTS App" data-name="App">
+		<style class="Example">                            
+			.Example > :first-child {width: 300px;height: 300px;border: 2px solid black;}
+			.Example > :first-child > div {background-color: yellow;}
+			.Example > :first-child > div:nth-of-type(even) {background-color: red;}
+		</style>
+
+		<div class="Example">
+			<div class="Ui Layout Split Vertical" data-min="10" data-max="90" data-value="25">
+				<div class="Layout"><div class="Ui Size"></div></div>
+				<div class="Ui Layout"><div class="Ui Size"></div></div>
+			</div>
+			<div class="Controls">
+				<div>
+					<label for="Min" class="form-label">Min (%)</label>
+					<input type="number" class="form-control Min" id="Min">
+				</div>
+				<div>
+					<label for="Max" class="form-label">Max (%)</label>
+					<input type="number" class="form-control Max" id="Max">
+				</div>
+				<div>
+					<label for="Value" class="form-label">Value (%)</label>
+					<input type="number" class="form-control Value" id="Value">
+				</div>
+				<div class="Buttons">
+					<input type="button" class="Toggle btn" value="Toggle">
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+
+
+
+
+
+

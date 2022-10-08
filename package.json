@@ -8,6 +8,7 @@
   },
   "scripts": {
   	"build": "npm run-script sass && grunt all",
+	"git": "git add * && git commit -m 'auto' && git push",
     "sass": "sass src/styles/Ui.scss src/Ui.css --no-source-map"
   },
   "author": "",

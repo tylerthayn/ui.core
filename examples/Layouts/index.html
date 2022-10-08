@@ -1,7 +1,11 @@
-hbn                              
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Ui/Layout Examples</title>
+		<script src="../../node_modules/@web/core.js" data-main="main"></script>
+		<style>                            
 html, body {width: 100%;height:100%;margin:0;padding:0}
-
-.Ui.Size {display:flex;justify-content:center;align-items:center;}
 
 .View div {border:1px solid black;min-width:50px;min-height:50px;}
 .View {width:100%;height:100%;overflow:hidden;}
@@ -13,6 +17,30 @@ html, body {width: 100%;height:100%;margin:0;padding:0}
 .View > .Bar.Right {right:0px}
 .View > .Bar.Top {top:0px}
 
+
+.Layouts {display: flex;flex-flow: row nowrap;justify-content: space-evenly;}
+.Layouts > .Layout {width: 300px;height: 300px;border: 2px solid green;}
+.Layouts > .Layout > div {background-color: yellow;}
+.Layouts > .Layout > div:nth-of-type(even) {background-color: red;}
+
+
+.Layout.Scrolled {display: inline-block;}
+
+.Layout.Scrolled.Horizontal {display:flex;justify-content:flex-start;align-items:center;overflow:hidden;overflow-x:scroll}
+.Layout.Scrolled.Vertical {overflow:hidden;overflow-y:scroll}
+.Layout.Scrolled.Horizontal > * {height:100%;flex-grow:0;flex-shrink:0;}
+.Layout.Scrolled.Vertical > * {width:100%;}
+
+.Layout.Paged {overflow:hidden;display:inline-block;}
+
+.Layout.Paged.Horizontal {display:flex;justify-content:flex-start;align-items:center;overflow-x:scroll;}
+.Layout.Paged.Horizontal > * {flex-shrink:0;flex-grow:0}
+.Layout.Paged.Vertical {overflow-y:scroll;}
+
+.Layout.Paged > * {width:100%;height:100%;}
+.Layouts .Layout {border: 1px solid black;}
+</style>
+<!--
 .Layout {width: 100%;height: 100%;display:flex;flex-wrap:nowrap;justify-content:center;align-items:center;}
 .Layout.Horizontal {flex-direction:row;}
 .Layout.Horizontal > div {height: 100%;}
@@ -22,8 +50,7 @@ html, body {width: 100%;height:100%;margin:0;padding:0}
 .Layout .Exoand {flex-grow:1;flex-shrink:1;}
 .Layout {border: 1px solid black;}
 .Layout div {border: 1px solid black;}
-
-		</style>
+-->
 	</head>
 	<body class="TTS App" data-name="App">
 
@@ -31,27 +58,8 @@ html, body {width: 100%;height:100%;margin:0;padding:0}
 		<h2>Ui/Layout Examples</h2>
 		<ul>
 			<li><a href="Fixed.html">Fixed</a><br>
-<style>
-.FixedLayouts {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-evenly;
-}
 
-.Layout.Fixed {
-	width: 300px;
-	height: 300px;
-	border: 2px solid green;
-}
-.Layout.Fixed > div {
-	background-color: yellow;
-}
-.Layout.Fixed > div:nth-of-type(even) {
-	background-color: red;
-}
-</style>
-
-<div class="FixedLayouts">
+<div class="Layouts Fixed">
 	<div class="Ui Layout Fixed Vertical">
 		<div class="Layout"><div class="Ui Size"></div></div>
 		<div class="Layout"><div class="Ui Size"></div></div>
@@ -71,27 +79,8 @@ html, body {width: 100%;height:100%;margin:0;padding:0}
 			</li>
 			<li><a href="Split.html">Split</a><br>
 
-<style>
-.SplitLayouts {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-evenly;
-}
 
-.Layout.Split {
-	width: 300px;
-	height: 300px;
-	border: 2px solid green;
-}
-.Layout.Split > div:first-child {
-	background-color: red;
-}
-.Layout.Split > div:last-child {
-	background-color: yellow;
-}
-</style>
-
-<div class="SplitLayouts">
+<div class="Layouts Split">
 	<div class="Ui Layout Split Vertical">
 		<div class="Layout"><div class="Ui Size"></div></div>
 		<div class="Ui Layout"><div class="Ui Size"></div></div>
@@ -105,33 +94,9 @@ html, body {width: 100%;height:100%;margin:0;padding:0}
 			
 			</li>
 			<li><a href="Scrolled.html">Scrolled</a><br>
-<style>
-.ScrolledLayouts {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-evenly;
-}
 
-.Layout.Scrolled {
-	display: inline-block;
-	width: 300px;
-	height: 300px;
-	border: 2px solid green;
-}
-.Layout.Scrolled.Horizontal {display:flex;justify-content:flex-start;align-items:center;overflow:hidden;overflow-x:scroll}
-.Layout.Scrolled.Vertical {overflow:hidden;overflow-y:scroll}
-.Layout.Scrolled.Horizontal > * {height:100%;flex-grow:0;flex-shrink:0;}
-.Layout.Scrolled.Vertical > * {width:100%;}
 
-.Layout.Scrolled > div {
-	background-color: yellow;
-}
-.Layout.Scrolled > div:nth-of-type(even) {
-	background-color: red;
-}
-</style>
-
-<div class="ScrolledLayouts">
+<div class="Layouts Scrolled">
 	<div class="Ui Layout Scrolled Vertical">
 		<div class="" style="height:100px"><div class="Ui Size"></div></div>
 		<div class="" style="height:200px"><div class="Ui Size"></div></div>
@@ -149,34 +114,8 @@ html, body {width: 100%;height:100%;margin:0;padding:0}
 			
 			</li>
 			<li><a href="Paged.html">Paged</a><br>
-<style>
-.PagedLayouts {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-evenly;
-}
 
-.Layout.Paged {
-	overflow:hidden;
-	display:inline-block;
-	width: 300px;
-	height: 300px;
-	border: 2px solid green;
-}
-.Layout.Paged.Horizontal {display:flex;justify-content:flex-start;align-items:center;overflow-x:scroll;}
-.Layout.Paged.Horizontal > * {flex-shrink:0;flex-grow:0}
-.Layout.Paged.Vertical {overflow-y:scroll;}
-
-.Layout.Paged > * {width:100%;height:100%;}
-.Layout.Paged > div {
-	background-color: yellow;
-}
-.Layout.Paged > div:nth-of-type(even) {
-	background-color: red;
-}
-</style>
-
-<div class="PagedLayouts">
+<div class="Layouts Paged">
 	<div class="Ui Layout Paged Vertical">
 		<div class="Layout"><div class="Ui Size"></div></div>
 		<div class="Layout"><div class="Ui Size"></div></div>

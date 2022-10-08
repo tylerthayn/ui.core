@@ -105,24 +105,98 @@ define('@css/Ui', ['Util'], ($) => {
 .Ui.Hidden {
   display: none !important;
 }
-.Ui.Layout.Resizable {
-  border: 2px solid red;
+.Ui.AppBarx {
+  position: relative;
+}
+.Ui.AppBarx.Top {
+  width: 100%;
+  top: 0px;
+  left: 0px;
+}
+.Ui.AppBarx.Bottom {
+  width: 100%;
+  bottom: 0px;
+  left: 0px;
+}
+.Ui.AppBarx.Left {
+  left: 0px;
+  top: 0px;
+  height: 100%;
+}
+.Ui.AppBarx.Right {
+  top: 0px;
+  height: 100%;
+}
+.Ui.AppBarWrapperx {
+  position: relative;
+}
+.Ui.AppBarWrapperx.Top {
+  width: 100%;
+  top: 0px;
+}
+.Ui.AppBarWrapperx.Bottom {
+  width: 100%;
+  bottom: 0px;
+}
+.Ui.AppBarWrapperx.Left {
+  left: 0px;
+  height: 100%;
+}
+.Ui.AppBarWrapperx.Right {
+  right: 0px;
+  height: 100%;
+}
+.Ui.AppBarWrapperx .AppBar {
+  position: relative;
+}
+.Ui.Size {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.Layout {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+.Layout.Horizontal {
+  flex-direction: row;
+}
+.Layout.Horizontal > div {
+  height: 100%;
+}
+.Layout.Vertical {
+  flex-direction: column;
+}
+.Layout.Vertical > div {
+  width: 100%;
+}
+.Layout > .Bar {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.Layout.Expand {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+.Layout.Split {
   overflow: hidden;
-  box-sizing: border-box;
 }
-.Ui.Layout.Resizable.Vertical {
-  display: block;
+.Layout.Split > :nth-of-type(1) {
+  flex-grow: 0;
+  flex-shrink: 0;
 }
-.Ui.Layout.Resizable.Vertical > * {
-  display: block;
+.Layout.Split > :nth-of-type(2) {
+  flex-grow: 1;
+  flex-shrink: 1;
 }
-.Ui.Layout.Resizable.Horizontal {
-  white-space: nowrap;
-}
-.Ui.Layout.Resizable.Horizontal > * {
-  display: inline-grid;
-}
-.Ui.Layout > * > .ui-resizable-s {
+.Layout.Split .ui-resizable-s {
   height: 9px !important;
   background: rgb(2, 0, 36);
   background: -webkit-gradient(linear, 100% 0, 0 0, from(rgba(255, 255, 255, 0)), color-stop(0.5, rgb(0, 0, 0)), to(rgba(255, 255, 255, 0)));
@@ -130,9 +204,8 @@ define('@css/Ui', ['Util'], ($) => {
   background: -moz-linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgb(0, 0, 0) 50%, rgba(255, 255, 255, 0) 100%);
   background: -o-linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgb(0, 0, 0) 50%, rgba(255, 255, 255, 0) 100%);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgb(0, 0, 0) 50%, rgba(255, 255, 255, 0) 100%);
-  z-index: 101 !important;
 }
-.Ui.Layout > * > .ui-resizable-e {
+.Layout.Split .ui-resizable-e {
   width: 12px !important;
   right: -8px !important;
   background: rgb(2, 0, 36);
@@ -141,30 +214,48 @@ define('@css/Ui', ['Util'], ($) => {
   background: -moz-linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgb(0, 0, 0) 50%, rgba(255, 255, 255, 0) 100%);
   background: -o-linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgb(0, 0, 0) 50%, rgba(255, 255, 255, 0) 100%);
   background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgb(0, 0, 0) 50%, rgba(255, 255, 255, 0) 100%);
-  z-index: 101 !important;
-}
-.Ui.Size {
-  width: 100%;
-  height: 100%;
 }
 `, 'src/Ui')
 })
 
 
-define(['jquery', 'jquery-ui', 'jQuery/Util', 'Observers', '$Ui', 'Ui/Loader', 'Ui/Ui', 'Ui/Container', 'Ui/Activatable', 'Ui/Size', 'Ui/Layout', 'Ui/PatternLock', '@css/Ui'], ($) => {
+define([
+	'jquery',
+	'jquery-ui',
+	'jQuery/Util',
+	'Observers',
+	'Ui/AppBar',
+	'Ui/Loader',
+	'Ui/Layout',
+	'Ui/Layout/Fixed',
+	'Ui/Layout/Paged',
+	'Ui/Layout/Scrolled',
+	'Ui/Layout/Split',
+	'Ui/PatternLock',
+	'Ui/Size',
+	'Ui/Ui',
+	'@css/Ui'
+], ($) => {
 
-/*
-	let Ui = (...args) => {
+})
 
 
-	}
+define('jQuery/Action', ['jquery'], ($) => {
 
-	Define(Ui, 'Build', (...args) => {
-		log('Ui.Build()')
+	$.fn.extend({
+		Action: function (name, ...args) {
+			this.each((i, e) => {
+				$(e).triggerHandler('action.'+name, args)
+			})
+		},
+		ActionHandler: function (name, fn) {
+			this.each((i, e) => {
+				$(e).on('action.'+name, {action: name}, (event, ...args) => {
+					fn.call(this, ...args)
+				})
+			})
+		}
 	})
-
-	$.extend({Ui: Ui})
-*/
 
 })
 
@@ -244,7 +335,40 @@ define('jQuery/Height', ['jquery', 'jQuery/Value'], ($, Value) => {
 })
 
 
-define('jQuery/Util', ['jquery', 'jQuery/ValueOf', 'jQuery/Value', 'jQuery/Height', 'jQuery/Width'], ($, ValueOf, Value, Height, Width) => {
+define('jQuery/Property', ['jquery', 'jQuery/Data'], ($) => {
+
+	$.fn.extend({
+		Property: function (name, value) {
+			if (Type(name, 'string')) {
+				if (typeof value === 'undefined') {
+					return this.data(name)
+				} else if (value instanceof Function) {
+					this.each((i, e) => {
+						$(e).on('data-change', (event, data) => {
+							if (Reflect.has(data, name)) {
+								value(data[name])
+							}
+						})
+					})
+				} else {
+					this.each((i, e) => {
+						$(e).data(name, value)
+					})
+				}
+			} else if (Type(name, 'object')) {
+				this.each((i, e) => {
+					Object.keys(name).forEach(key => {
+						$(e).data(key, name[key])
+					})
+				})
+			}
+		}
+	})
+
+})
+
+
+define('jQuery/Util', ['jquery', 'jQuery/Action', 'jQuery/Property', 'jQuery/ValueOf', 'jQuery/Value', 'jQuery/Height', 'jQuery/Width'], ($, ValueOf, Value, Height, Width) => {
 
 })
 
@@ -484,468 +608,409 @@ define('Observers/Resized', ['jquery'], ($) => {
 
 
 
-/**
-* @module Ui/Activatable
-*/
+define('Ui/AppBar', ['jquery', 'jquery-ui', 'Ui/Ui'], ($) => {
+	let directions = {top: 'up', bottom: 'down', left: 'left', right: 'right'}
 
-/** Container
-*
-* @function Append(...[elements])
-* @function Prepend(...[elements])
-* @function Clear()
-* @function Detach(...[selectors])
-* @function Remove(...[selectors])
-*/
-define('Ui/Activatable', ['jquery', 'jquery-ui', 'Ui/Ui'], ($) => {
-
-	/** Options
-	* @typedef {object} Ui/Container.Options
-	* @property {}
-	*/
-
-	let Activatable = $.widget('Ui.Activatable', $.Ui.Ui, {
-		widgetEventPrefix: 'activatable',
+	return $.widget('Ui.AppBar', $.Ui.Ui, {
 		options: {
-			active: false,
+			autohide: true,
+			effect: 'slide',
+			overlay: true,
+			position: 'top',
+			width: 50,
+			height: 0,
 
-			// callbacks
-			activated: Function.noop,
-			deactivated: Function.noop
+			Hidden: Function.Noop,
+			Shown: Function.noop,
 		},
 		_create: function () {
-			this._super()
+			this._parent = this.element.parent()
+			if (this.element.hasClass('Top')) {this.options.position = 'top';this.options.height=this.element.height()}
+			if (this.element.hasClass('Bottom')) {this.options.position = 'bottom';this.options.height=this.element.height()}
+			if (this.element.hasClass('Left')) {this.options.position = 'left';this.options.height=this.element.width()}
+			if (this.element.hasClass('Right')) {this.options.position = 'right';this.options.height=this.element.width()}
+			this._setOption('position', this.options.position)
+			if (this.options.autohide) {this._Wrap()}
 
-			this.element.bind('activatableclick', (...args) => {
-				log('activatableclick')
-				this.Toggle()
-			})
+			$(window).on('resized', () => {this._Position()})
 
-			this.element.on('click', () => {
-				this._trigger('click', {}, 'clicky')
-			})
-
-			this._on(this.element, {activated: () => {log('...+')}, deactivated: () => {log('...-')}})
-
-/*
-			this.element.on('activated', (...args) => {
-				this.options.activated instanceof Function && this.options.activated(...args)
-			})
-			this.element.on('deactivated', (...args) => {
-				this.options.deactivated instanceof Function && this.options.deactivated(...args)
-			})
-*/
-			this.Refresh()
 		},
-		_setOption: function( key, value ) {
-			if (key == 'active') {
-				return value ? this.Activate() : this.Deactivate()
+		_Position: function () {
+			this._Size()
+			this.element.css('position', 'absolute')
+			if (this.options.position == 'top') {
+				if (this._wrapper != null) {
+					this._wrapper.css('top', this._wrapper.parent().offset().top+'px')
+					this._wrapper.css('left', this._wrapper.parent().offset().left+'px')
+					this.element.css('top', '0px')
+					this.element.css('left', '0px')
+				} else {
+					this.element.css('top', this.element.parent().offset().top+'px')
+					this.element.css('left', this.element.parent().offset().left+'px')
+				}
 			}
+			if (this.options.position == 'bottom') {
+				if (this._wrapper != null) {
+					this._wrapper.css('top', (this._wrapper.parent().offset().top+this._wrapper.parent().Height()-this._wrapper.Height())+'px')
+					this._wrapper.css('left', this._wrapper.parent().offset().left+'px')
+					this.element.css('top', '0px')
+					this.element.css('left', '0px')
+				} else {
+					this.element.css('top', (this.element.parent().offset().top+this.element.parent().Height()-this.element.Height())+'px')
+					this.element.css('left', this.element.parent().offset().left+'px')
+				}
+			}
+			if (this.options.position == 'left') {
+				if (this._wrapper != null) {
+					this._wrapper.css('top', this._wrapper.parent().offset().top+'px')
+					this._wrapper.css('left', this._wrapper.parent().offset().left+'px')
+					this.element.css('top', '0px')
+					this.element.css('left', '0px')
+				} else {
+					this.element.css('top', this.element.parent().offset().top+'px')
+					this.element.css('left', this.element.parent().offset().left+'px')
+				}
+			}
+			if (this.options.position == 'right') {
+				if (this._wrapper != null) {
+					this._wrapper.css('top', this._wrapper.parent().offset().top+'px')
+					this._wrapper.css('left', (this._wrapper.parent().offset().left+this._wrapper.parent().Width()-this._wrapper.Width())+'px')
+					this.element.css('top', '0px')
+					this.element.css('left', this.options.width+'px')
+				} else {
+					this.element.css('top', this.element.parent().offset().top+'px')
+					this.element.css('left', (this.element.parent().offset().left+this.element.parent().Width()-this.element.Width())+'px')
+				}
+			}
+		},
+		_Size: function () {
+			if (this.options.position == 'top') {
+				if (this._wrapper != null) {
+					this._wrapper.Width(this._wrapper.parent().Width())
+					this._wrapper.Height(this.options.height+this.options.width)
+				}
+				this.element.Width(this.element.parent().Width())
+				this.element.Height(this.options.height)
+			}
+			if (this.options.position == 'bottom') {
+				if (this._wrapper != null) {
+					this._wrapper.Width(this._wrapper.parent().Width())
+					this._wrapper.Height(this.options.height+this.options.width)
+				}
+				this.element.Width(this.element.parent().Width())
+				this.element.Height(this.options.height)
+			}
+			if (this.options.position == 'left') {
+				if (this._wrapper != null) {
+					this._wrapper.Width(this.options.height+this.options.width)
+					this._wrapper.Height(this._wrapper.parent().Height())
+				}
+				this.element.Width(this.options.height)
+				this.element.Height(this.element.parent().Height())
+			}
+			if (this.options.position == 'right') {
+				if (this._wrapper != null) {
+					this._wrapper.Width(this.options.height+this.options.width)
+					this._wrapper.Height(this._wrapper.parent().Height())
+				}
+				this.element.Width(this.options.height)
+				this.element.Height(this.element.parent().Height())
+			}
+
+		},
+		_setOption: function (key, value) {
 			this._super(key, value)
-		},
-		Activate: function () {
-			if (!this.options.disabled) {
-				if (!this.options.active) {
-					this.options.active = true
-					this.element.addClass('Active')
-					this._trigger('activated', {})
+			if (key == 'autohide') {
+				if (value) {this._Wrap()}
+				else {this._Unwrap()}
+			}
+			if (key == 'position') {
+				this.element.removeClass('Top Bottom Left Right')
+				this.element.addClass(value.Capitalize())
+				this._Position()
+			}
+			if (key == 'overlay') {
+				this.Show()
+			}
+			if (key == 'width') {
+				if (this._wrapper != null) {
+					if (this.options.position == 'top' || this.options.position == 'bottom') {
+						this._wrapper.Height(this.element.Height() + this.options.width)
+					} else {
+						this._wrapper.Width(this.element.Width() + this.options.width)
+					}
 				}
 			}
-			return this
 		},
-		Deactivate: function () {
-			if (!this.options.disabled) {
-				if (this.options.active) {
-					this.options.active = false
-					this.element.removeClass('Active')
-					this._trigger('deactivated', {})
+		_Unwrap: function () {
+			if (this._wrapper != null) {
+				this._wrapper.parent().append(this.element.detach())
+				this._wrapper.remove()
+				this._Wrapper = null
+			}
+		},
+		_Wrap: function () {
+			if (this._wrapper == null) {
+				this.element.wrap($('<div class="Ui AppBarWrapper">'))
+				this._wrapper = $('.Ui.AppBarWrapper')
+				this._wrapper.addClass(this.options.position.Capitalize())
+				this._wrapper.css('position', 'absolute')
+				let $this = this
+				let Show = () => {
+					$this.Show()
+					$this.element.one('mouseleave', () => {
+						$this._wrapper.one('mouseleave', () => {
+							$this.Hide()
+							$this._wrapper.one('mouseover', Show)
+						})
+					})
 				}
+
+				this._wrapper.one('mouseover', Show)
+				this._Position()
+				this.Hide()
 			}
-			return this
 		},
-		Toggle: function () {
-			if (!this.options.disabled) {
-				this.options.active ? this.Deactivate() : this.Activate()
+		_wrapper: null,
+		Hide: function () {
+			this._parent.css('padding', '0px')
+			this._hide(this.element, {effect: this.options.effect, direction: directions[this.options.position]}, () => {
+				this._trigger('Hidden')
+			})
+		},
+		Show: function () {
+			this._parent.css('padding', '0px')
+			if (this.options.overlay === false) {
+				if (this.options.position == 'top') {this._parent.css('padding-top', this.options.height+'px')}
+				if (this.options.position == 'bottom') {this._parent.css('padding-bottom', this.options.height+'px')}
+				if (this.options.position == 'left') {this._parent.css('padding-left', this.options.height+'px')}
+				if (this.options.position == 'right') {this._parent.css('padding-right', this.options.height+'px')}
 			}
-			return this
+			this._show(this.element, {effect: this.options.effect, direction: directions[this.options.position]}, () => {
+				this._trigger('Shown')
+			})
 		}
 	})
 
 
 
-	return Activatable
+
 })
 
 
-/**
-* @module Ui/Container
-*/
+define('Ui/Layout/Fixed', ['jquery', 'Ui/Layout'], ($) => {
 
-/** Container
-*
-* @function Append(...[elements])
-* @function Prepend(...[elements])
-* @function Clear()
-* @function Detach(...[selectors])
-* @function Remove(...[selectors])
-*/
-define('Ui/Container', ['jquery', 'jquery-ui', 'Ui/Ui'], ($) => {
-
-	/** Options
-	* @typedef {object} Ui/Container.Options
-	* @property {}
-	*/
-
-	let widget = $.widget('Ui.Container', $.Ui.Ui, {
+	return $.widget('Layout.Fixed', $.Ui.Layout, {
 		options: {
-			contentElement: null,
+			panelTemplate: `<div class="Layout">`,
+			max: 80,
+			min: 25,
+			value: 50,
 
-			// callbacks
-			appended: Function.Noop,
-			cleared: Function.Noop,
-			detached: Function.Noop,
-			prepended: Function.Noop,
-			removed: Function.Noop
+			resizable: {
+				handles: ''
+			}
+
 		},
 		_create: function () {
 			this._super()
 
-			if (this.options.contentElement == null) {
-				this.options.contentElement = this.element[0]
-			} else if (Type(this.options.contentElement, 'string')) {
-				this.options.contentElement = this.element.find(this.options.contentElement)[0]
-			} else if (this.options.contentElement instanceof $) {
-				this.options.contentElement = this.options.contentElement[0]
-			}
 
-			this.Refresh()
-		},
-		_Elements: function (...args) {
-			let selectors = typeof args.first === 'boolean' ? args.shift() : false
-			let elements = []
-			args.forEach(arg => {
-				if (arg instanceof Element) {
-					elements.push(arg)
-				} else if (arg instanceof $) {
-					arg.each((i, e) => {
-						elements.push(e)
-					})
-				} else if (selectors && Type(arg, 'string')) {
-					$(this.options.contentElement).children(arg).each((i, e) => {
-						elements.push(e)
-					})
-				}
-			})
-			return elements
-		},
+			while (this.element.children().length < 2) {
+				this.element.append($(this.options.panelTemplate))
+			}
+			this.element.children().each((i, e) => {if (i > 1) {$(e).detach()}})
+			this.options.resizable.handles = this.options.direction == 'vertical' ? 's' : 'e'
+			this.options.resizable.resize = () => {this.element.children().each((i, e) => {$(e).triggerHandler('resized')})}
+			$(this.element.children()[0]).resizable(this.options.resizable)
 
-		Append: function (...args) {
-			if (!this.options.disabled) {
-				this._Elements(...args).forEach(element => {
-					this.options.contentElement.append(element)
-					this._trigger('appended', {}, element)
-				})
-			}
-			return this
-		},
-		Clear: function () {
-			if (!this.options.disabled) {
-				this.Contains().forEach(e => {
-					e.remove()
-				})
-				this._trigger('cleared')
-			}
-			return this
-		},
-		Contains: function (...args) {
-			args = args.length == 0 ? $(this.options.contentElement).children() : args
-			return this._Elements(true, ...args).filter(element => $(this.options.contentElement).index(element) == -1)
-		},
-		Detach: function (...args) {
-			if (!this.options.disabled) {
-				let elements = []
-				this.Contains(...args).forEach(element => {
-					elements.push($(element).detach())
-					this._trigger('detached', {}, elements.last)
-				})
-				return elements
-			}
-			return this
-		},
-		Prepend: function (...args) {
-			if (!this.options.disabled) {
-				this._Elements(...args).forEach(element => {
-					this.options.contentElement.prepend(element)
-					this._trigger('prepended', {}, element)
-				})
-			}
-			return this
-		},
-		Refresh: function () {
-			this._super()
-		},
-		Remove: function (...args) {
-			if (!this.options.disabled) {
-				this.Contains(...args).forEach(element => {
-					this._trigger('removed', {}, element)
-					element.remove()
-				})
-			}
-			return this
+
 		}
 	})
 
-	return widget
 })
 
 
-/** ResizableLayout Options
-* @memberof Ui.
-* @typedef ResizableLayoutOptions
-* @property {number} min - Min size (%)
-* @property {number} max - Max size (%)
-* @property {number} value - Current size (%)
-*/
-define('Ui/Layout', ['jquery', 'Ui/Layout/Resizable/Vertical', 'Ui/Layout/Resizable/Horizontal'], ($) => {
+define('Ui/Layout', ['jquery', 'Ui/Ui'], ($) => {
 
-})
-
-
-/**
- * HorizontalResizableLayout
- *
- * @memberof Ui.
- * @class HorizontalResizableLayout
- */
-define('Ui/Layout/Resizable/Horizontal', ['jquery', 'jquery-ui'], ($) => {
-	function ValueOf (v) {return parseFloat(v.replace(/px$/, ''))}
-
-	$.widget('Ui.HorizonatlResizableLayout', {
-		/** Options
-		* @memberof Ui.HorizontalResizableLayout#
-		* @property {Ui.ResizableLayoutOptions} options
-		*/
+	return $.widget('Ui.Layout', $.Ui.Ui, {
 		options: {
+			direction: 'vertical',
+			type: 'scrolled'
+		},
+		_create: function () {
+			this._super()
+
+			this.options.direction = this.element.hasClass('Horizontal') ? 'horizontal' : 'vertical'
+			this.options.type = this.element.hasClass('Fixed') ? 'fixed' : this.element.hasClass('Split') ? 'split' : this.element.hasClass('Paged') ? 'paged' : 'scrolled'
+
+
+			this.Refresh()
+		}
+	})
+
+})
+
+
+define('Ui/Layout/Paged', ['jquery', 'Ui/Layout'], ($) => {
+
+	return $.widget('Layout.Paged', $.Ui.Layout, {
+		options: {
+			panelTemplate: `<div class="Layout">`,
+			max: 80,
+			min: 25,
+			value: 50,
+
+			resizable: {
+				handles: ''
+			}
+
+		},
+		_create: function () {
+			this._super()
+
+
+			while (this.element.children().length < 2) {
+				this.element.append($(this.options.panelTemplate))
+			}
+			this.element.children().each((i, e) => {if (i > 1) {$(e).detach()}})
+			this.options.resizable.handles = this.options.direction == 'vertical' ? 's' : 'e'
+			this.options.resizable.resize = () => {this.element.children().each((i, e) => {$(e).triggerHandler('resized')})}
+			$(this.element.children()[0]).resizable(this.options.resizable)
+
+
+		}
+	})
+
+})
+
+
+define('Ui/Layout/Scrolled', ['jquery', 'Ui/Layout'], ($) => {
+
+	return $.widget('Layout.Scrolled', $.Ui.Layout, {
+		options: {
+			panelTemplate: `<div class="Layout">`
+		},
+		_create: function () {
+			this._super()
+
+
+			this.element.children().each((i, e) => {
+				if (this.options.type == 'horizontal') {
+					$(e).Height(this.element.Height())
+				} else {
+					$(e).Width(this.element.Width())
+				}
+
+			})
+		}
+	})
+
+})
+
+
+define('Ui/Layout/Split', ['jquery', 'Ui/Layout'], ($) => {
+
+	return $.widget('Layout.Split', $.Ui.Layout, {
+		options: {
+			panelTemplate: `<div class="Layout">`,
 			max: 100,
 			min: 0,
-			value: 50
+			value: 50,
+
+			resizable: {
+				handles: ''
+			}
+
+		},
+		_calculateLimits: function () {
+			if (this.options.direction == 'horizontal') {
+				this._max = this.element.width() * this.options.max/100
+				this._min = this.element.width() * this.options.min/100
+			} else {
+				this._max = this.element.height() * this.options.max/100
+				this._min = this.element.height() * this.options.min/100
+			}
+		},
+		_calculateValue: function () {
+			if (this.options.direction == 'horizontal') {
+				this.options.value = ($(this.element.children()[0]).width() / this.element.width()) * 100
+			} else {
+				this.options.value = ($(this.element.children()[0]).height() / this.element.height()) * 100
+			}
+			this.options.value = Math.round(this.options.value * 1000)/1000
+		},
+		_configureResizable: function () {
+			this._calculateLimits()
+			if (this.options.direction == 'horizontal') {
+				this.options.resizable.handles = 'e'
+				this.options.resizable.maxHeight = this.element.height()
+				this.options.resizable.minHeight = this.element.height()
+				this.options.resizable.maxWidth = this._max
+				this.options.resizable.minWidth = this._min
+			} else {
+				this.options.resizable.handles = 's'
+				this.options.resizable.maxWidth = this.element.width()
+				this.options.resizable.minWidth = this.element.width()
+				this.options.resizable.maxHeight = this._max
+				this.options.resizable.minHeight = this._min
+			}
+			$(this.element.children()[0]).resizable(this.options.resizable)
+		},
+		_create: function () {
+			this._super()
+
+
+			while (this.element.children().length < 2) {
+				this.element.append($(this.options.panelTemplate))
+			}
+			this.element.children().each((i, e) => {if (i > 1) {$(e).detach()}})
+
+			this.options.direction = this.element.hasClass('Horizontal') ? 'horizontal' : 'vertical'
+			if (this.element.data('max')) {this.max = this.element.data('max')}
+			if (this.element.data('min')) {this.min = this.element.data('min')}
+			if (this.element.data('value')) {this.value = this.element.data('value')}
+
+			this.options.resizable.resize = () => {
+				this.element.children().each((i, e) => {$(e).triggerHandler('resized')})
+				this._calculateValue()
+				this._trigger('resize', {}, this.options.value)
+			}
+			this._configureResizable()
+
+			this.element.on('uiresized', () => {this._configureResizable()})
+
+			this.Refresh()
 		},
 		_min: 0,
 		_max: 0,
-		_Calculate: function () {
-			this._min = ValueOf(this.element.css('width')) * (this.options.min / 100)
-			this._max = ValueOf(this.element.css('width')) * (this.options.max / 100)
-		},
-		_create: function () {
-			if (this.element.data('min')) {this.options.min = parseFloat(this.element.data('min'))}
-			if (this.element.data('max')) {this.options.max = parseFloat(this.element.data('max'))}
-			this._Calculate()
-			if (this.element.data('value')) {
-				this.options.value = parseFloat(this.element.data('value')) / 100
-				this.SetPercentage(this.options.value)
-			} else {this.SetWidth()}
-
-			this.element.children().css('height', this.element.css('height'))
-
-			$(this.element.children()[0]).resizable({
-				handles: 'e',
-				minWidth: this._min,
-				maxWidth: this._max,
-				resize: (event, ui) => {
-					this.SetWidth(ui.size.width)
-				}
-			})
-
-			this.element.on('refresh', (event, element) => {
-				if (element == this.element) {event.stopPropagation()}
-				else {this.Refresh()}
-			})
-
-			$(this.element.children()[0]).find('.ui-resizable-handle').on('dblclick', () => {
-				this.Toggle()
-			})
-
+		_setOption: function (key, value) {
+			this._super(key, value)
+			if (key == 'max' || key == 'min') {
+				this._configureResizable()
+				this._trigger('limits', {}, this.options.Pick('max', 'min'))
+			}
+			if (key == 'value') {
+				this._trigger('resize', {}, this.options.value)
+			}
 			this.Refresh()
 		},
-		_setOption: function (key, value) {
-			if (value < 0) {value = 0}
-			if (value > 100) {value = 100}
-			if (key == 'value') {
-				this.SetPercentage(value)
-			} else {
-				this._Calculate()
-				this.Refresh()
-				this.SetHeight()
-			}
-			this._super(key, value)
-		},
-		/** Refresh
-		* @memberof Ui.HorizontalResizableLayout#
-		* @function Refresh
-		*/
 		Refresh: function () {
-			this._Calculate()
-			this.element.children().css('height', this.element.css('height'))
-			$(this.element.children()[0]).resizable('option', 'minWidth', this._min)
-			$(this.element.children()[0]).resizable('option', 'maxWidth', this._max)
-			this.SetWidth()
+			if (this.options.value < this.options.min) {this.options.value = this.options.min}
+			if (this.options.value > this.options.max) {this.options.value = this.options.max}
+
+			if (this.options.direction == 'horizontal') {
+				$(this.element.children()[0]).width(this.element.width() * (this.options.value/100))
+			} else {
+				$(this.element.children()[0]).height(this.element.height() * (this.options.value/100))
+			}
+			this.element.children().each((i, e) => {$(e).triggerHandler('resized')})
+			this._trigger('resize', {}, this.options.value)
+			this._super()
 		},
-		/** SetPercentage
-		* @memberof Ui.VerticalResizableLayout#
-		* @function SetPercentage
-		* @param {number} percentage - Percentage of overall width to set
-		*/
-		SetPercentage: function (p) {
-			this.SetWidth(this.element.width() * (p/100))
-		},
-		/** SetWidth
-		* @memberof Ui.HorizontalResizableLayout#
-		* @function SetWidth
-		* @param {number} width - The width to set (default is child[0] width)
-		*/
-		SetWidth: function (w) {
-			w = typeof w === 'undefined' ? $(this.element.children()[0]).width() : w
-			w = w < this._min ? this._min : w
-			w = w > this._max ? this._max : w
-			$(this.element.children()[0]).width(w)
-			$(this.element.children()[1]).width(this.element.width() - $(this.element.children()[0]).width())
-			this.options.value = Math.trunc((w/this.element.width())*100000)/1000
-			this.element.children().trigger('refresh', [this.element])
-		},
-		/** Toggle
-		* @memberof Ui.HorizontalResizableLayout#
-		* @function Toggle
-		*/
 		Toggle: function () {
-			if ($(this.element.children()[0]).width() < this.element.width()/2) {
-				this.SetPercentage(100)
-			} else {
-				this.SetPercentage(0)
-			}
+			this._setOption('value', this.options.value > 50 ? this.options.min : this.options.max)
 		}
-	})
-
-	$(() => {
-		$('.Ui.Layout.Resizable.Horizontal').HorizonatlResizableLayout()
-	})
-
-})
-
-
-/**
- * VerticalResizableLayout
- *
- * @memberof Ui.
- * @class VerticalResizableLayout
- */
-define('Ui/Layout/Resizable/Vertical', ['jquery', 'jquery-ui'], ($) => {
-	function ValueOf (v) {return parseFloat(v.replace(/px$/, ''))}
-
-	$.widget('Ui.VerticalResizableLayout', {
-		/** Options
-		* @memberof Ui.VerticalResizableLayout#
-		* @property {Ui.ResizableLayoutOptions} options
-		*/
-		options: {
-			max: 100,
-			min: 0,
-			value: 50
-		},
-		_minHeight: 0,
-		_maxHeight: 0,
-		_Calculate: function () {
-			this._min = ValueOf(this.element.css('height')) * (this.options.min / 100)
-			this._max = ValueOf(this.element.css('height')) * (this.options.max / 100)
-		},
-		_create: function () {
-			if (this.element.data('min')) {this.options.min = parseFloat(this.element.data('min'))}
-			if (this.element.data('max')) {this.options.max = parseFloat(this.element.data('max'))}
-			this._Calculate()
-			if (this.element.data('value')) {
-				this.SetPercentage(parseFloat(this.element.data('value')))
-			} else {this.SetHeight()}
-
-			this.element.children().css('width', this.element.css('width'))
-
-			$(this.element.children()[0]).resizable({
-				handles: 's',
-				minHeight: this._min,
-				maxHeight: this._max,
-				resize: (event, ui) => {
-					this.SetHeight(ui.size.height)
-				}
-			})
-
-			this.element.on('refresh', (event, element) => {
-				if (element == this.element) {event.stopPropagation()}
-				else {this.Refresh()}
-			})
-
-			$(this.element.children()[0]).children('.ui-resizable-handle').on('dblclick', () => {
-				this.Toggle()
-			})
-
-			this.Refresh()
-		},
-		_setOption: function (key, value) {
-			if (value < 0) {value = 0}
-			if (value > 100) {value = 100}
-			if (key == 'value') {
-				this.SetPercentage(value)
-			} else {
-				this._Calculate()
-				this.Refresh()
-				this.SetHeight()
-			}
-			this._super(key, value)
-		},
-		/** Refresh
-		* @memberof Ui.VerticalResizableLayout#
-		* @function Refresh
-		*/
-		Refresh: function () {
-			this._Calculate()
-			this.element.children().css('width', this.element.css('width'))
-			$(this.element.children()[0]).resizable('option', 'minHeight', this._min)
-			$(this.element.children()[0]).resizable('option', 'maxHeight', this._max)
-			this.SetHeight()
-		},
-		/** SetHeight
-		* @memberof Ui.VerticalResizableLayout#
-		* @function SetHeight
-		* @param {number} height - The height to set (default is child[0] height)
-		*/
-		SetHeight: function (h) {
-			h = typeof h === 'undefined' ? (this.options.value/100) * this.element.height() : h
-			h = h < this._min ? this._min : h
-			h = h > this._max ? this._max : h
-			$(this.element.children()[0]).height(h)
-			$(this.element.children()[1]).height(this.element.height() - $(this.element.children()[0]).height())
-			this.options.value = Math.trunc((h/this.element.height())*100000)/1000
-			this.element.children().trigger('refresh', [this.element])
-		},
-		/** SetPercentage
-		* @memberof Ui.VerticalResizableLayout#
-		* @function SetPercentage
-		* @param {number} percentage - Percentage of overall height to set
-		*/
-		SetPercentage: function (p) {
-			this.SetHeight(this.element.height() * (p/100))
-		},
-		/** Toggle
-		* @memberof Ui.VerticalResizableLayout#
-		* @function Toggle
-		*/
-		Toggle: function () {
-			if ($(this.element.children()[0]).height() < this.element.height()/2) {
-				this.SetPercentage(100)
-			} else {
-				this.SetPercentage(0)
-			}
-		}
-	})
-
-	$(() => {
-		$('.Ui.Layout.Resizable.Vertical').VerticalResizableLayout()
 	})
 
 })

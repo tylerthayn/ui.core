@@ -1,4 +1,4 @@
-require(['jquery', 'jquery-ui', 'Layout'], ($) => {
+require(['jquery', '../../src/Ui.js'], ($) => {
 
 	$(() => {
 		$('.Ui.Layout.Split').Split({

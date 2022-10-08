@@ -105,24 +105,98 @@ define('@css/Ui', ['Util'], ($) => {
 .Ui.Hidden {
   display: none !important;
 }
-.Ui.Layout.Resizable {
-  border: 2px solid red;
+.Ui.AppBarx {
+  position: relative;
+}
+.Ui.AppBarx.Top {
+  width: 100%;
+  top: 0px;
+  left: 0px;
+}
+.Ui.AppBarx.Bottom {
+  width: 100%;
+  bottom: 0px;
+  left: 0px;
+}
+.Ui.AppBarx.Left {
+  left: 0px;
+  top: 0px;
+  height: 100%;
+}
+.Ui.AppBarx.Right {
+  top: 0px;
+  height: 100%;
+}
+.Ui.AppBarWrapperx {
+  position: relative;
+}
+.Ui.AppBarWrapperx.Top {
+  width: 100%;
+  top: 0px;
+}
+.Ui.AppBarWrapperx.Bottom {
+  width: 100%;
+  bottom: 0px;
+}
+.Ui.AppBarWrapperx.Left {
+  left: 0px;
+  height: 100%;
+}
+.Ui.AppBarWrapperx.Right {
+  right: 0px;
+  height: 100%;
+}
+.Ui.AppBarWrapperx .AppBar {
+  position: relative;
+}
+.Ui.Size {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.Layout {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+.Layout.Horizontal {
+  flex-direction: row;
+}
+.Layout.Horizontal > div {
+  height: 100%;
+}
+.Layout.Vertical {
+  flex-direction: column;
+}
+.Layout.Vertical > div {
+  width: 100%;
+}
+.Layout > .Bar {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.Layout.Expand {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+.Layout.Split {
   overflow: hidden;
-  box-sizing: border-box;
 }
-.Ui.Layout.Resizable.Vertical {
-  display: block;
+.Layout.Split > :nth-of-type(1) {
+  flex-grow: 0;
+  flex-shrink: 0;
 }
-.Ui.Layout.Resizable.Vertical > * {
-  display: block;
+.Layout.Split > :nth-of-type(2) {
+  flex-grow: 1;
+  flex-shrink: 1;
 }
-.Ui.Layout.Resizable.Horizontal {
-  white-space: nowrap;
-}
-.Ui.Layout.Resizable.Horizontal > * {
-  display: inline-grid;
-}
-.Ui.Layout > * > .ui-resizable-s {
+.Layout.Split .ui-resizable-s {
   height: 9px !important;
   background: rgb(2, 0, 36);
   background: -webkit-gradient(linear, 100% 0, 0 0, from(rgba(255, 255, 255, 0)), color-stop(0.5, rgb(0, 0, 0)), to(rgba(255, 255, 255, 0)));
@@ -130,9 +204,8 @@ define('@css/Ui', ['Util'], ($) => {
   background: -moz-linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgb(0, 0, 0) 50%, rgba(255, 255, 255, 0) 100%);
   background: -o-linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgb(0, 0, 0) 50%, rgba(255, 255, 255, 0) 100%);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgb(0, 0, 0) 50%, rgba(255, 255, 255, 0) 100%);
-  z-index: 101 !important;
 }
-.Ui.Layout > * > .ui-resizable-e {
+.Layout.Split .ui-resizable-e {
   width: 12px !important;
   right: -8px !important;
   background: rgb(2, 0, 36);
@@ -141,11 +214,6 @@ define('@css/Ui', ['Util'], ($) => {
   background: -moz-linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgb(0, 0, 0) 50%, rgba(255, 255, 255, 0) 100%);
   background: -o-linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgb(0, 0, 0) 50%, rgba(255, 255, 255, 0) 100%);
   background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgb(0, 0, 0) 50%, rgba(255, 255, 255, 0) 100%);
-  z-index: 101 !important;
-}
-.Ui.Size {
-  width: 100%;
-  height: 100%;
 }
 `, 'src/Ui')
 })
