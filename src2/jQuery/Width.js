@@ -1,7 +1,7 @@
 /**
 * @module jQuery/Width
 */
-define('jQuery/Width', ['jquery', 'jQuery/Value'], ($, Value) => {
+define(['jquery', 'jQuery/Value'], ($, Value) => {
 
 	/** Width - gets or sets the width of an element
 	* @function Width

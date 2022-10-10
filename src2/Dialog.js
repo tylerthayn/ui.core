@@ -1,4 +1,4 @@
-define('Ui/Dialog', ['jquery-ui', 'Ui/Ui'], ($) => {
+define(['jquery-ui', 'Ui/Ui'], ($) => {
 
 	function Dialog () {
 

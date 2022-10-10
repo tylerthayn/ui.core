@@ -1,4 +1,4 @@
-define('Ui/Builder', ['jquery', 'jquery-ui', 'jQuery', 'Observers', 'Widgets'], ($) => {
+define(['jquery', 'jquery-ui', 'jQuery/index', 'Observers/index', 'Ui/Widgets/index'], ($) => {
 
 	let config = {
 		id: 0,
@@ -50,32 +50,44 @@ define('Ui/Builder', ['jquery', 'jquery-ui', 'jQuery', 'Observers', 'Widgets'], 
 					}
 				})
 
+				if (this.src instanceof Element) {
+					for (i=0; i<this.src.attributes.length; i++) {
+						$(this.options.elements[0]).attr(this.src.attributes[i].name, this.src.attributes[i].value)
+					}
+				}
+				$(this.options.elements[0]).attr('id', this.options.id)
 				this.options.elements[0].style.display = 'none'
 
 				this.InsertStyles().then(() => {
 					return this.InsertScripts()
+				}).then(() => {
+					return this.CreateWidget(data)
 				}).then(() => {
 					if (this.src instanceof Element) {
 						$(this.src).replaceWith(this.options.elements[0])
 					} else {
 						$('body').append(this.options.elements[0])
 					}
-				}).then(() => {
-					return this.CreateWidget()
 				}).finally(() => {
-					resolve(this.options.widget || this.options.elements[0])
+					Ui(this.options.widget || this.options.elements[0])
+					Loader($(this.options.elements[0]).find('Ui')).then(children => {
+						resolve([this.options.widget || this.options.elements[0], ...children])
+					}).catch(reject)
 				})
 			}).catch(reject)
 		})
 	}
 
-	Builder.prototype.CreateWidget = function () {
+	Builder.prototype.CreateWidget = function (data = {}) {
 		return new Promise((resolve, reject) => {
 			if (this.options.type == null) {
 				return resolve()
 			}
 			require([this.options.type], (uiClass) => {
-				this.options.widget = new uiClass(this.options.data, this.options.elements[0])
+				if (this.src instanceof Element) {
+					Extend(data, {children: $(this.src).children()})
+				}
+				this.options.widget = new uiClass(data, this.options.elements[0])
 				resolve()
 			})
 		})
@@ -163,6 +175,59 @@ define('Ui/Builder', ['jquery', 'jquery-ui', 'jQuery', 'Observers', 'Widgets'], 
 		return path
 	}
 
-	return Builder
+	function Loader (...args) {
+		if (args.length == 0) {
+			return new Promise((resolve, reject) => {resolve([])})
+		}
+		if (args.first instanceof $) {
+			return PromiseWrapper(Promise.all(args.shift().toArray().map(e => Loader(e, ...args))))
+		} else if (Type(args.first, 'string')) {
+			if (!args.first.startsWith('uri:')) {
+				return PromiseWrapper(Promise.all($(args.shift()).toArray().map(e => Loader(e, ...args))))
+			}
+		} else if (Array.isArray(args.first)) {
+			return PromiseWrapper(Promise.all(args.shift().map(e => Loader(e, ...args))))
+		}
+
+		let src = args.shift()
+		let type = typeof args.first === 'string' ? args.shift() : null
+		let options = args.length > 0 ? args.shift() : {}
+		let data = args.length > 0 ? args.shift() : {}
+		if (type != null) {options.type = type}
+		if (src instanceof Element) {
+			let attributes = {}
+			for (i=0; i<src.attributes.length; i++) {
+				if (!src.attributes[i].name.startsWith('data-')) {
+					attributes[src.attributes[i].name] = src.attributes[i].value
+				}
+			}
+			data = Extend({}, $(src).data(), data)
+			options = Extend({}, attributes, options)
+			return new Builder(src, options).Build(data)
+		} else if (Type(src, 'string') || Type(src, 'url')) {
+			src = src.toString().replace(/^uri\:\/*/i, '')
+			return Builder(src, options).Build(data)
+		} else {
+			return new Promise((resolve, reject) => {reject('Invalid src')})
+		}
+	}
+
+	function PromiseWrapper (promise) {
+		return new Promise((resolve, reject) => {
+			promise.then(results => {
+				results = Array.Flatten(results)
+				//if (results.length == 1) {
+				//	resolve(results[0])
+				//} else {
+					resolve(results)
+				//}
+			}).catch(reject)
+		})
+	}
+
+	return {
+		Builder: Builder,
+		Loader: Loader
+	}
 
 })

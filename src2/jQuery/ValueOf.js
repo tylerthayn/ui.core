@@ -1,7 +1,7 @@
 /**
 * @module jQuery/ValueOf
 */
-define('jQuery/ValueOf', ['jquery'], ($) => {
+define(['jquery'], ($) => {
 
 	/** ValueOf
 	* @function ValueOf

@@ -1,4 +1,4 @@
-define('jQuery/Property', ['jquery', 'jQuery/Data'], ($) => {
+define(['jquery', 'jQuery/Data'], ($) => {
 
 	$.fn.extend({
 		Property: function (name, value) {

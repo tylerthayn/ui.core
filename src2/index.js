@@ -1,3 +1,4 @@
+/*
 require([
 	'@js/core',
 	'jquery',
@@ -28,3 +29,10 @@ require([
 define((require, exports, module) => {
 	return require('./Ui/index')
 })
+*/
+
+
+define(['Ui'], (Ui) => {
+	return Ui
+})
+

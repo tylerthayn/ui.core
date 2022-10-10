@@ -7,7 +7,7 @@ function ProcessFolder (path) {
 			if (!entry.name.includes('RemoveNames')) {
 				let data = Fs.readFileSync($path.join(path, entry.name), 'utf-8')
 				data = data.replace(/define\('.+?', */, 'define(')
-				Fs.writeFileSync($path.join(path, '!'+entry.name), data, 'utf-8')
+				Fs.writeFileSync($path.join(path, entry.name), data, 'utf-8')
 			}
 		}
 	})

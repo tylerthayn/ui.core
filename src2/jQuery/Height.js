@@ -1,7 +1,7 @@
 /**
 * @module jQuery/Height
 */
-define('jQuery/Height', ['jquery', 'jQuery/Value'], ($, Value) => {
+define(['jquery', 'jQuery/Value'], ($, Value) => {
 
 	/** Height - gets or sets the height of an element
 	* @function Height

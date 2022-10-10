@@ -1,7 +1,7 @@
 /**
 * @module jQuery/Data
 */
-define('jQuery/Data', ['jquery'], ($) => {
+define(['jquery'], ($) => {
 	let dataFn = $.fn.data
 
 	/** data-change event

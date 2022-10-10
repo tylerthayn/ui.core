@@ -1,0 +1,76 @@
+<!-- Ui/Dialog/Basic -->
+<div class="Ui Dialog Flex CenterX CenterY">
+	<div class="card Content">
+		<div class="card-header Header">
+			<span class="Title">Basic Dialog</span>
+			<i class="material-icons Button Close" data-action="cancel" style="float: right;">cancel</i>
+		</div>
+		<div class="card-body Body">
+			<div class="card-title Title">Dialog Message Header</div>
+			<div class="card-text Message">Lorem Ipsum is the single greatest threat. We are not - we are not keeping up with other websites. Lorem Ipsum best not make any more threats to your website. It will be met with fire and fury like the world has never seen. Does everybody know that pig named Lorem Ipsum? An 'extremely credible source' has called my office and told me that Barack Obama's placeholder text is a fraud.</div>
+		</div>
+		<div class="card-footer bg-secondary Footer">
+			<button class="btn btn-primary Button Cancel" data-action="cancel">Cancel</button>
+			<button class="btn btn-primary Button Accept" data-action="accept">Accept</button>
+		</div>
+	</div>
+</div>
+<!-- Ui/Dialog/Basic -->
+
+<style class="Ui Dialog">
+.Flex {display: flex;}
+.CenterY {align-items: center;}
+.CenterX {justify-content: center;}
+
+.Ui.Dialog {
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #111111DD;
+}
+
+.Dialog .Content {
+	width: 80%;
+	height: 80%;
+	border: 3px solid #336699;
+	border-radius: 10px;
+	background-color: white;
+}
+
+.Dialog .Content .card-header {
+	font-size: 1.5em;
+}
+
+.Dialog .Content .card-footer {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.Dialog.Prompt .Content {
+	width: 50%;
+	height: auto;
+}
+</style>
+
+<script>
+	log(this)
+	log(arguments)
+
+	$(this).one('mounted', () => {
+		$.Observers.Shown(this, 'ttt')
+		$(this).on('tttshown', () => {log('Shown')})
+		$('button').on('click', (event) => {
+			$('.App').Property('repeat', $(event.target).data('action'))
+		})
+		$('i').on('click', () => {
+			$('.App').Action('print', 'tyler', 'is', 'way/cool')
+		})
+	})
+</script>

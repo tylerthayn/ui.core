@@ -1,6 +1,9 @@
-define('Ui/Dialog', ['jquery', 'jquery-ui'], ($) => {
+define(['jquery', 'jquery-ui'], ($) => {
+	let className = 'Ui/Widgets/Dialog'
 
-	return $.widget('Ui.Dialog', {
+	return $.widget(className.split(/\//g).slice(-2).join('.'), {
+		type: className,
+		widgetEventPrefix: className.split(/\//g)[0].toLowerCase(),
 		options: {
 			effect: {
 				effect: 'fade'
@@ -10,6 +13,7 @@ define('Ui/Dialog', ['jquery', 'jquery-ui'], ($) => {
 			closeOnEscape: true
 		},
 		_create: function () {
+			this.parent = this.element.parent()
 			this.element.detach()
 		},
 		Hide: function () {
@@ -19,7 +23,7 @@ define('Ui/Dialog', ['jquery', 'jquery-ui'], ($) => {
 			})
 		},
 		Show: function () {
-			$('body').append(this.element)
+			this.parent.append(this.element)
 			this._show(this.element, this.options.effect, () => {
 				this._trigger('shown')
 			})

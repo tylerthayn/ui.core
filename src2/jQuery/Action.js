@@ -1,4 +1,4 @@
-define('jQuery/Action', ['jquery'], ($) => {
+define(['jquery'], ($) => {
 
 	$.fn.extend({
 		Action: function (name, ...args) {
@@ -9,7 +9,7 @@ define('jQuery/Action', ['jquery'], ($) => {
 		ActionHandler: function (name, fn) {
 			this.each((i, e) => {
 				$(e).on('action.'+name, {action: name}, (event, ...args) => {
-					fn.call(this, ...args)
+					fn.call(e, ...args)
 				})
 			})
 		}

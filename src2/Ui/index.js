@@ -1,4 +1,4 @@
-define('Ui', ['jquery', 'jquery-ui', 'jQuery', 'Observers', 'Widgets', 'Ui/Loader', 'Ui/Builder'], (...modules) => {
+define(['jquery', 'jquery-ui', 'jQuery/index', 'Observers/index', 'Widgets/index', 'Ui/Loader', 'Ui/Builder'], (...modules) => {
 
 	function Ui () {
 

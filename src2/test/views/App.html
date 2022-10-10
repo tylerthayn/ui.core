@@ -1,0 +1,28 @@
+<div class="Ui App">
+	<div class="Section" name="Main"></div>
+	<Ui id="MyPrompt" name="Prompt" type="Ui/Widgets/Dialog" src="dialogs/Prompt" data-name="Tyler" />
+</div>
+
+<script>
+	$(this).one('mounted', () => {
+		$.Observers.Shown(this, 'ttt')
+		$(this).on('tttshown', () => {log('Shown')})
+		$('button').on('click', (event) => {
+			$('.App').Property('repeat', $(event.target).data('repeat'))
+		})
+		$('i').on('click', () => {
+			$('.App').Action('print', 'tyler', 'is', 'way/cool')
+		})
+	})
+</script>
+
+<style>
+html, body {width: 100%; height: 100%;margin: 0px; padding:0px;}
+body {display: flex;justify-content: center; align-items: center;}
+
+.Flex {display: flex;}
+.CenterY {align-items: center;}
+.CenterX {justify-content: center;}
+</style>
+
+

@@ -1,20 +1,13 @@
 requirejs.config({
-	baseUrl: '../'
+	baseUrl: '../',
+	paths: {
+		'Ui': ''
+	}
 })
 
-require(['jquery', 'index'], ($, Ui) => {
-	log(Ui)
-/*
-	require(['Ui'], (Ui) => {
-		log(Ui)
-		log(Type(Ui))
-		$(() => {
+require(['jquery', 'Ui'], ($, Ui) => {
+	$(() => {
 
 
-
-		})
-
-		window.Ui = Ui
 	})
-*/
 })
