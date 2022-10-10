@@ -222,8 +222,10 @@ define('@css/Ui', ['Util'], ($) => {
 define([
 	'jquery',
 	'jquery-ui',
+
 	'jQuery/Util',
 	'Observers',
+
 	'Ui/AppBar',
 	'Ui/Loader',
 	'Ui/Layout',
@@ -237,6 +239,7 @@ define([
 	'@css/Ui'
 ], ($) => {
 
+	return 'UI!!!!'
 })
 
 

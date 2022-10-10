@@ -1,0 +1,29 @@
+{
+    "src/Ui.js": [
+        ".Build/tmp/styles.js",
+        "src/js/index.js",
+        "src/js/jQuery/Action.js",
+        "src/js/jQuery/Data.js",
+        "src/js/jQuery/Height.js",
+        "src/js/jQuery/Property.js",
+        "src/js/jQuery/Util.js",
+        "src/js/jQuery/Value.js",
+        "src/js/jQuery/ValueOf.js",
+        "src/js/jQuery/Width.js",
+        "src/js/Observers/Hidden.js",
+        "src/js/Observers/index.js",
+        "src/js/Observers/Mounted.js",
+        "src/js/Observers/Resized.js",
+        "src/js/Ui/AppBar.js",
+        "src/js/Ui/Layout/Fixed.js",
+        "src/js/Ui/Layout/index.js",
+        "src/js/Ui/Layout/Paged.js",
+        "src/js/Ui/Layout/Scrolled.js",
+        "src/js/Ui/Layout/Split.js",
+        "src/js/Ui/Loader.js",
+        "src/js/Ui/PatternLock.js",
+        "src/js/Ui/Size.js",
+        "src/js/Ui/Ui.js",
+        "src/$Ui.js"
+    ]
+}

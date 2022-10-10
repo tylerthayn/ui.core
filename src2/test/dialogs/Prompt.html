@@ -1,0 +1,69 @@
+<link rel="stylesheet" href="dialogs/styles.css">
+<script>
+	$(this).one('mounted', () => {
+		$.Observers.Shown(this, 'ttt')
+		$(this).on('tttshown', () => {log('Shown')})
+		$('button').on('click', (event) => {
+			$('.App').Property('repeat', $(event.target).data('repeat'))
+		})
+		$('i').on('click', () => {
+			$('.App').Action('print', 'tyler', 'is', 'way/cool')
+		})
+	})
+</script>
+<style>
+html, body {width: 100%; height: 100%;margin: 0px; padding:0px;}
+body {display: flex;justify-content: center; align-items: center;}
+
+.Flex {display: flex;}
+.CenterY {align-items: center;}
+.CenterX {justify-content: center;}
+
+.Dialog {
+	width: 100%;
+	height: 100%;
+	background-color: #111111DE;
+}
+
+.Dialog .Content {
+	width: 80%;
+	height: 80%;
+	border: 3px solid #336699;
+	border-radius: 10px;
+	background-color: white;
+}
+
+.Dialog .Content .card-header {
+	font-size: 1.5em;
+}
+
+.Dialog .Content .card-footer {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.Dialog.Prompt .Content {
+	width: 50%;
+	height: auto;
+}
+
+
+</style>
+
+<div class="Dialog Prompt Flex CenterX CenterY">
+	<div class="card Content">
+		<div class="card-header">
+			<span class="Title">Basic Dialog</span>
+			<i class="material-icons" style="float: right;">cancel</i>
+		
+		</div>
+		<div class="card-body">
+			<h5 class="card-title">Dialog Message Header</h5>
+			<p class="card-text">Lorem Ipsum is the single greatest threat. We are not - we are not keeping up with other websites. Lorem Ipsum best not make any more threats to your website. It will be met with fire and fury like the world has never seen. Does everybody know that pig named Lorem Ipsum? An 'extremely credible source' has called my office and told me that Barack Obama's placeholder text is a fraud.</p>
+		</div>
+		<div class="card-footer bg-secondary">
+			<button class="btn btn-primary" data-repeat="one">Cancel</button>
+			<button class="btn btn-primary" data-repeat="all">Accept</button>
+		</div>
+	</div>
+</div>

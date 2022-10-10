@@ -1,0 +1,1 @@
+define('Widgets', ['Widgets/Dialog', 'Widgets/Ui'], () => {})

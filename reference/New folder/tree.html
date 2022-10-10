@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.css">
+-->
+
+<script src="https://cdn.jsdelivr.net/npm/@tyler.thayn/js.core.web@1.1.0/dist/js.core.web.js" data-start="Start" data-host="file:///D://@CODE/jquery.ui/tree/" data-main="jquery.ui.tree.js"></script>
+
+</head>
+<body>
+
+<ul class="TreeView" data-selectable="none" data-open="https://www.clipartmax.com/png/small/4-46225_arrows-clip-art-arrow-pointing-down-clip-art.png" data-close="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIeEqAi0epijR_qKsQW5AYlj4IgeeWJsclzA&usqp=CA">
+	<li id="Beverages"><span>Beverages</span>
+		<ul>
+			<li><span>Water</span></li>
+			<li><span>Coffee</span></li>
+			<li id="Tea"><span>Tea</span></span>
+				<ul>
+					<li><span>Black Tea</span></li>
+					<li><span>White Tea</span></li>
+					<li><span>Green Tea</span></span>
+						<ul>
+							<li><span>Sencha</span></li>
+							<li><span>Gyokuro</span></li>
+							<li><span>Matcha</span></li>
+							<li><span>Pi Lo Chun</span></li>
+						</ul>
+					</li>
+				</ul>
+			</li>  
+		</ul>
+	</li>
+</ul>
+
+<script>
+function Start () {
+require(['jquery.ui.tree.js'], ($) => {
+	$('.TreeView').tree({})
+})
+}
+</script>
+
+<!--
+<script>
+$.contextMenu({
+	selector: '.Collapseable', 
+	callback: function(key, options) {
+		console.log(options.$trigger)
+		if (key == 'collapse') {
+			options.$trigger.removeClass('Expanded')
+			options.$trigger.addClass('Collapsed')
+			options.$trigger.find('.Collapseable').removeClass('Expanded')
+			options.$trigger.find('.Collapseable').addClass('Collapsed')
+		}
+		if (key == 'expand') {
+			options.$trigger.removeClass('Collapsed')
+			options.$trigger.addClass('Expanded')
+			options.$trigger.find('.Collapseable').removeClass('Collapsed')
+			options.$trigger.find('.Collapseable').addClass('Expanded')
+		}
+	},
+	items: {
+		"collapse": {name: "Collapse All"},
+		"expand": {name: "Expand All"}
+	}
+});
+
+$.widget( "ui.tree", {
+	options: {
+		classes: ['Ui', 'Tree'],
+		enabled: true
+	},
+    _create: function() {
+        this.element.addClass(this.options.classes.join(' '))
+		
+		this.element.children('li').each((i, e) => {
+			if ($(e).children('ul').length > 0) {
+				$(e).addClass('Collapseable Collapsed')
+				$(e).children('ul').addClass('Hidden')
+			}
+		})
+		this.element.find('ul > li').get().reverse().forEach(e => {
+			if ($(e).children('ul').length > 0) {
+				$(e).addClass('Collapseable Collapsed')
+				$(e).children('ul').addClass('Hidden')
+			}
+		})
+		$('.Collapseable').on('click', (event) => {
+			event.preventDefault()
+			event.stopPropagation()
+			$(event.target).toggleClass('Collapsed')
+			$(event.target).toggleClass('Expanded')
+		})
+		$('.Ui.Tree li span').on('contextmenu', (event) => {
+			event.preventDefault()
+			event.stopPropagation()
+		})
+
+		$('.Ui.Tree li span').on('click', (event) => {
+			event.preventDefault()
+			event.stopPropagation()
+			$(event.target).toggleClass('Selected')
+			$(event.target.parentElement).find('li > span')
+
+			if ($(event.target).hasClass('Selected')) {
+				$(event.target.parentElement).find('li > span').addClass('Selected')
+			} else {
+				$(event.target.parentElement).find('li > span').removeClass('Selected')
+			}
+		})
+
+		function SortList(list){listitems=list.children('li').get();listitems.sort(function(a,b){return $(a).find('ul').length>0?-1:$(b).find('ul').length>0?1:$(a).text().toUpperCase().localeCompare($(b).text().toUpperCase())});$.each(listitems,function(idx,itm){list.append(itm)})}
+		SortList(this.element)
+		this.element.find('ul').each((i, e) => {SortList($(e))})
+		
+
+    }
+});
+</script>
+-->
+
+</body>
+</html>

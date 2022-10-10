@@ -14,7 +14,8 @@ module.exports = function(grunt) {
 						'!src/js/!*.js',
 						'!src/js/**/!*.js',
 						'!src/**/!/**/*.js',
-						'!src/**/!/*.js'
+						'!src/**/!/*.js',
+						'!src/**/ListView.js'
 					]
 				},
 				options: {
