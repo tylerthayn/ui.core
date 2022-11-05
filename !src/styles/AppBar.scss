@@ -1,0 +1,52 @@
+@mixin AppBar() {
+	&.AppBarx {
+		position: relative;
+
+		&.Top {
+			width: 100%;
+			top: 0px;
+			left: 0px;
+		}
+		&.Bottom {
+			width: 100%;
+			bottom: 0px;
+			left: 0px;
+		}
+		&.Left {
+			left: 0px;
+			top: 0px;
+			height: 100%;
+		}
+		&.Right {
+			top: 0px;
+			height: 100%;
+		}
+	}
+
+	&.AppBarWrapperx {
+		position: relative;
+
+		&.Top {
+			width: 100%;
+			top: 0px;
+		}
+		&.Bottom {
+			width: 100%;
+			bottom: 0px;
+		}
+		&.Left {
+			left: 0px;
+			height: 100%;
+		}
+		&.Right {
+			right: 0px;
+			height: 100%;
+		}
+
+		.AppBar {
+			position: relative;
+
+		}
+	}
+
+}

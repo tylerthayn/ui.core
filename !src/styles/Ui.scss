@@ -1,0 +1,17 @@
+@use 'AppBar';
+@use 'Layout';
+@use 'Size';
+
+@use 'patternLock';
+
+.Ui {
+	&.Hidden {
+		display: none!important;
+	}
+
+	@include AppBar.AppBar;
+	@include Size.Size;
+}
+
+@include Layout.Layout;
+

@@ -1,1 +1,0 @@
-define(['Ui/Widgets/Dialog', 'Ui/Widgets/Ui', 'Ui/Widgets/App'], () => {})

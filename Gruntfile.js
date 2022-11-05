@@ -3,51 +3,27 @@
 module.exports = function(grunt) {
 
 	grunt.initConfig({
-		concat: {
-			default: {
-				files: {
-					'src/Ui.js': [
-						'.Build/tmp/styles.js',
-						'src/js/**/*.js',
-						'src/js/*.js',
-						'src/$Ui.js',
-						'!src/js/!*.js',
-						'!src/js/**/!*.js',
-						'!src/**/!/**/*.js',
-						'!src/**/!/*.js',
-						'!src/**/ListView.js'
-					]
-				},
-				options: {
-					separator: '\n\n',
-					listFile: false
-				}
-			}
-		},
 		clean: {
 			options: {
 				paths: [
 					'.Build/tmp',
-					'src/Ui.js'
+					'src/Ui.css',
+					'Ui.js',
+					'docs'
 				]
 			}
 		},
-/*
 		concat: {
-			all: {
+			default: {
 				files: {
-					'index.js': [
-							'src/config.js',
-							'.Build/tmp/requirejs.min.js',
-							'.Build/tmp/lodash.min.js',
-							'.Build/tmp/jquery.min.js',
-							'.Build/tmp/jquery-ui.min.js',
-							'.Build/tmp/popperjs.min.js',
-							'.Build/tmp/bootstrap.min.js',
-							'.Build/tmp/notifyjs.min.js',
-							'.Build/tmp/core.js',
-							'.Build/tmp/Util.js',
-							'.Build/tmp/styles.js'
+					'Ui.js': [
+						'.Build/tmp/styles.js',
+						'src/**/*.js',
+						'src/*.js',
+						'!src/js/!*.js',
+						'!src/js/**/!*.js',
+						'!src/**/!/**/*.js',
+						'!src/**/!/*.js'
 					]
 				},
 				options: {
@@ -56,63 +32,35 @@ module.exports = function(grunt) {
 				}
 			}
 		},
-		make: {
-			all: {
+		jsdoc: {
+			default: {
+				src: ["src/*.js", "src/**/*.js", "README.md"],
+				options: {
+					"destination": "docs",
+					"template": ".Build/templates/docs/template",
+					"configure": "jsdoc.conf"
+				}
+			}
+		},
+		readme: {
+			options: {
+				output: 'README.md',
+				template: '.Build/templates/readme'
+			}
+		},
+		rev: {},
+		sass: {
+			default: {
 				files: {
-					'core.js': [require.resolve('@js/core')],
-					'bootstrap.js': [require.resolve('bootstrap')],
-					'jquery.js': [require.resolve('jquery')],
-					'jquery-ui.js': [require.resolve('jqueryui')],
-					'lodash.js': [require.resolve('lodash')],
-					'notifyjs.js': [require.resolve('notifyjs-browser')],
-					'popperjs.js': [require.resolve('@popperjs/core').replace('cjs', 'umd')],
-					'requirejs.js': [require.resolve('requirejs').replace(/bin(\/|\\)r\.js/, 'require.js')],
-					'Util.js': ['src/Util/AddStyle.js', 'src/Util/InsertScript.js', 'src/Util/InsertStyle.js', 'src/Util/index.js'],
+					'src/Ui.css': [
+						'styles/Ui.scss'
+					]
 				},
 				options: {
-					folder: '.Build/tmp/',
-					separator: '\n\n'
+					args: ['--no-source-map']
 				}
 			}
 		},
-		minify: {
-			options: {
-				files: [
-					'core.js',
-					'bootstrap.js',
-					'jquery.js',
-					'jquery-ui.js',
-					'lodash.js',
-					'notifyjs.js',
-					'popperjs.js',
-					'requirejs.js'
-				],
-				folder: '.Build/tmp/',
-				uglify: {
-					compress: true,
-					output: {
-						quote_style: 1,
-						comments: /(^\!|license|Copyright)/i
-					}
-				}
-			}
-		},
-		replacements: {
-			all: {
-				options: {
-					files: {
-						'bootstrap.js': [[/define\(/, 'define(\'bootstrap\', ']],
-						'jquery-ui.js': [[/define\(/, 'define(\'jquery-ui\', ']],
-						'lodash.js': [[/define\(/, 'define(\'lodash\', ']],
-						'notifyjs.js': [[/define\(/, 'define(\'notifyjs\', ']],
-						'popperjs.js': [[/define\(/, 'define(\'@popperjs/core\', ']], //[/^/, `(function () {\r\n`], [/$/, `\r\n}());`]
-					},
-					folder: '.Build/tmp/',
-					separator: '\n\n'
-				}
-			}
-		},
-*/
 		styles: {
 			options: {
 				dest: '.Build/tmp/styles.js',
@@ -124,6 +72,11 @@ module.exports = function(grunt) {
 	})
 
 	grunt.loadTasks('.Build/tasks')
-	//grunt.registerTask('all', ['clean', 'make', 'replacements', 'minify', 'styles', 'concat']);
-	grunt.registerTask('all', ['styles', 'concat'])
+	grunt.loadNpmTasks('grunt-jsdoc')
+	grunt.registerTask('docs', ['readme', 'jsdoc'])
+	grunt.registerTask('default', ['clean', 'sass', 'styles', 'concat', 'docs'])
+	grunt.registerTask('patch', ['rev:patch'])
+	grunt.registerTask('minor', ['rev:minor'])
+	grunt.registerTask('major', ['rev:major'])
+
 }

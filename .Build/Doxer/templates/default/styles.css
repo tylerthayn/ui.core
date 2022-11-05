@@ -1,0 +1,98 @@
+html, body {width:100%;height:100%;margin:0px;padding:0px;overflow:hidden;}
+* {color:black;}
+
+.W100 {width: 100%;}
+.W300PX {width: 300px !important;}
+.H100 {height: 100%;}
+.Padding0 {padding: 0px !important;}
+.Margin0 {margin: 0px !important;}
+.Border1 {border: 1px solid black;}
+.Border2 {border: 2px solid black;}
+
+.Flex {display: flex;}
+.Flex.Column {flex-direction: column;}
+.Flex.Row {flex-direction: row;}
+.Flex.NoWrap {flex-wrap: nowrap;}
+.Flex > .Fixed {flex-shrink: 0;flex-grow: 0;}
+.Flex > .Expand {flex-shrink: 1;flex-grow: 1;}
+.Flex.ContentStart {justify-content:flex-start;}
+.Flex.AlignStart {align-items:flex-start;}
+.TOC {
+	border: 0px solid black;
+	overflow: auto;
+	width: 300px !important;
+	line-height: 18px;
+}
+.TOC > li {
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+.TOC > li li {
+	font-size: 0.9em;
+	font-weight: normal;
+}
+
+.TOC .Section .Header {
+	font-size: 1.25em;
+	font-weight: bold;
+	width: 100%;
+	text-align: center;
+	border: 2px solid #336699;
+	border-radius: 4px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+	background-color: #336699;
+	color: white;
+}
+
+div.Main {
+	overflow: auto;
+    padding: 20px !important;
+    white-space: pre;
+    font-size: 0.75em;
+    line-height: 15px;
+}
+
+div.Section {
+	border: 2px solid black;
+}
+
+div.Header {
+	
+}
+
+div.Clickable {
+	text-decoration: underline;
+}
+
+div.Clickable:hover {
+	color: red;
+	cursor: pointer;
+}
+
+div.Level1 {
+	margin-left: 10px;
+}
+
+div.Level2 {
+	margin-left: 20px;
+}
+
+
+
+li.Static::marker {
+	color: green;
+	content: '.';
+}
+
+li.Instance::marker {
+	color: blue;
+	content: '-';
+}
+
+li.Event::marker {
+	color: red;
+	content: '@';
+	font-size: 0.75em;
+}

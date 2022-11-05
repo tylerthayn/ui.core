@@ -1,0 +1,216 @@
+.patternlock {
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 10px #aaa;
+  margin: 20px;
+}
+
+.patternlock, .patternlock * {
+  /**disable dragging**/
+  -webkit-touch-callout: none;
+  touch-callout: none;
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+
+.patternlock .insideWrapper {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.patternlock .insideWrapper canvas, .patternlock .insideWrapper .tbl {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.patternlock .insideWrapper .tbl {
+  border-collapse: separate;
+  border-spacing: 25px;
+}
+
+.patternlock .tbl td {
+  background-color: #fff; /* required by IE to sense mouse over */
+  border: 1px solid black;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 4px 4px 4px #aaa;
+  vertical-align: middle;
+}
+
+.patternlock .tbl td:hover {
+  box-shadow: 4px 4px 4px #ccc;
+}
+
+.patternlock .tbl td.ie8FallbackHighlight {
+  background-color: red;
+}
+
+.patternlock .centerCircle {
+  border: 1px solid red;
+  margin: auto;
+  border-radius: 50%;
+  background-color: yellow;
+}
+
+.PatternLock {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.PinPad {
+  background: #336699;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.patternlock {
+  box-shadow: inset 0px 0px 10px #aaa;
+  background: #336699;
+}
+
+.patternlock .tbl td {
+  box-shadow: 4px 4px 4px #aaa;
+}
+
+.patternlock .tbl td:hover {
+  box-shadow: 4px 4px 4px #ccc;
+}
+
+.patternlock .centerCircle {
+  background-color: #336699;
+}
+
+.Ui.Hidden {
+  display: none !important;
+}
+.Ui.AppBarx {
+  position: relative;
+}
+.Ui.AppBarx.Top {
+  width: 100%;
+  top: 0px;
+  left: 0px;
+}
+.Ui.AppBarx.Bottom {
+  width: 100%;
+  bottom: 0px;
+  left: 0px;
+}
+.Ui.AppBarx.Left {
+  left: 0px;
+  top: 0px;
+  height: 100%;
+}
+.Ui.AppBarx.Right {
+  top: 0px;
+  height: 100%;
+}
+.Ui.AppBarWrapperx {
+  position: relative;
+}
+.Ui.AppBarWrapperx.Top {
+  width: 100%;
+  top: 0px;
+}
+.Ui.AppBarWrapperx.Bottom {
+  width: 100%;
+  bottom: 0px;
+}
+.Ui.AppBarWrapperx.Left {
+  left: 0px;
+  height: 100%;
+}
+.Ui.AppBarWrapperx.Right {
+  right: 0px;
+  height: 100%;
+}
+.Ui.AppBarWrapperx .AppBar {
+  position: relative;
+}
+.Ui.Size {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.Layout {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+.Layout.Horizontal {
+  flex-direction: row;
+}
+.Layout.Horizontal > div {
+  height: 100%;
+}
+.Layout.Vertical {
+  flex-direction: column;
+}
+.Layout.Vertical > div {
+  width: 100%;
+}
+.Layout > .Bar {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.Layout.Expand {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+.Layout.Split {
+  overflow: hidden;
+}
+.Layout.Split > :nth-of-type(1) {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.Layout.Split > :nth-of-type(2) {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+.Layout.Split .ui-resizable-s {
+  height: 9px !important;
+  background: rgb(2, 0, 36);
+  background: -webkit-gradient(linear, 100% 0, 0 0, from(rgba(255, 255, 255, 0)), color-stop(0.5, rgb(0, 0, 0)), to(rgba(255, 255, 255, 0)));
+  background: -webkit-linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgb(0, 0, 0) 50%, rgba(255, 255, 255, 0) 100%);
+  background: -moz-linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgb(0, 0, 0) 50%, rgba(255, 255, 255, 0) 100%);
+  background: -o-linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgb(0, 0, 0) 50%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgb(0, 0, 0) 50%, rgba(255, 255, 255, 0) 100%);
+}
+.Layout.Split .ui-resizable-e {
+  width: 12px !important;
+  right: -8px !important;
+  background: rgb(2, 0, 36);
+  background: -webkit-gradient(linear, 100% 0, 0 0, from(rgba(255, 255, 255, 0)), color-stop(0.5, rgb(0, 0, 0)), to(rgba(255, 255, 255, 0)));
+  background: -webkit-linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgb(0, 0, 0) 50%, rgba(255, 255, 255, 0) 100%);
+  background: -moz-linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgb(0, 0, 0) 50%, rgba(255, 255, 255, 0) 100%);
+  background: -o-linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgb(0, 0, 0) 50%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgb(0, 0, 0) 50%, rgba(255, 255, 255, 0) 100%);
+}

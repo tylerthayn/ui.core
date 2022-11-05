@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" class="H100 W100">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script class="Main" src="../../node_modules/@web/core.js"></script>
+	</head>
+	<body class="TTS App Flex Center Column NoWrap W100 H100" data-name="App">
+		<div class="Controls W100 form-row">
+			<div class="form-group col-md-3">
+				<label for="TypeSelect">Element Type</label>
+				<select id="TypeSelect" class="Type custom-select">
+					<option value="checkbox" selected>Checkbox</option>
+					<option value="radio">Radio</option>
+					<option value="select">Select</option>
+				</select>
+			</div>
+			<div class="Options Select form-group col-md-2">
+				<label for="StyleSelect">Style</label>
+				<select id="StyleSelect" class="Style custom-select">
+					<option value="stacked" selected>Stacked</option>
+					<option value="inline">Inline</option>
+				</select>
+			</div>
+		</div>
+
+		<div id="tabs" class="W100" style="height:100%">
+			<ul>
+				<li><a href="#input">Input</a></li>
+				<li><a href="#view">View</a></li>
+			</ul>
+			<div id="input" style="overflow-y:scroll;">
+				<textarea class="Input Fixed H100 W100 BORDER1">
+				[
+					{
+						"type": "select",
+						"mode": "checkbox",
+						"style": "stacked",
+						"name": "name",
+						"id": "id",
+						"selected": "two",
+						"options": ["one", "two", "three"]
+					}
+
+				]
+				</textarea>
+			</div>
+			<div id="view" style="overflow-y:scroll">
+				<div class="Form Expand W100 H100 BORDER1">
+
+
+				</div>
+			</div>
+		</div>
+
+
+<style>
+.Flex {display: flex;}
+.Flex.Center {justify-content:center;align-items:center;}
+.Flex.Column {flex-direction: column;}
+.Flex.NoWrap {flex-wrap: nowrap;}
+.Flex > .Expand {flex-shrink:1;flex-grow:1}
+.Flex > .Fixed {flex-shrink:0;flex-grow:0}
+.W100 {width: 100%;}
+.H100 {height: 100%;}
+.H200PX {height: 200px;}
+.H300PX {height: 300px;}
+.BORDER1 {border: 1px solid black;}
+
+label {font-size: 1.25em;font-weight:bold;}
+.Title {font-size: 1.2em;font-weight:bold;}
+.ui-tabs-panel {
+	padding: 10px !important;
+	height: calc(100% - 50px);
+}
+
+</style>
+
+<script>
+$(() => {
+	$('#tabs').tabs()
+	$('textarea.Input').on('change', CreateForm)
+
+
+})
+
+function CreateForm () {
+	$('.Form').empty()
+	new Function('return '+$('textarea.Input').val())().forEach(item => {
+		let _item = $('<div class="Group">')
+		$('.Form').append(_item)
+		_item.append($('<div class="Title">'+item.name+'</div>'))
+		if (item.type == 'select') {
+			if (item.mode == 'checkbox' || item.mode == 'radio') {
+				item.options.forEach(option => {
+					let checkbox = $(
+					`<div class="form-check">
+						<input class="form-check-input" type="${item.mode}" value="${option}" id="${item.id}" name="${item.name}">
+						<label class="form-check-label" for="${item.id}">${option}</label>
+					</div>`)
+					if (item.style == 'inline') {
+						checkbox.addClass('form-check-inline')
+					}
+					_item.append(checkbox)
+					if (item.selected == option) {
+						checkbox.children('input')[0].checked = true
+					}
+				})
+			}
+
+		}
+
+	})
+
+
+
+}
+
+</script>
+	</body>
+</html>

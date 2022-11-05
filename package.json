@@ -7,15 +7,27 @@
     "example": "examples"
   },
   "scripts": {
-  	"build": "npm run-script sass && grunt all",
-	"git": "git add * && git commit -m 'auto' && git push",
-    "sass": "sass src/styles/Ui.scss src/Ui.css --no-source-map"
+    "build": "npm run-script sass && grunt all",
+    "css": "sass styles/Ui.scss src/Ui.css --no-source-map",
+    "docs": "grunt docs",
+    "git": "git add * && git commit -m 'auto' && git push",
+    "readme": "grunt readme",
+    "patch": "grunt patch",
+    "minor": "grunt minor",
+    "major": "grunt major"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "grunt": "^1.5.3",
+    "grunt-jsdoc": "^2.4.1",
     "jsdoc": "^3.6.11",
+    "moment": "^2.29.4",
+    "sanitize-html": "^2.7.2",
     "sass": "^1.55.0"
+  },
+  "dependencies": {
+    "@tyler.thayn/js.core": "^0.13.14",
+    "@tyler.thayn/web.core": "^0.1.1"
   }
 }

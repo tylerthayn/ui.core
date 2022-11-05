@@ -1,14 +1,69 @@
+$.Height(element [,height])
+$.Include()
+$.Observers(element [,prefix])
+$.Observers.Hidden(element [,prefix])
+$.Observers.Mounted(element [,prefix])
+$.Observers.Resized(element [,prefix])
+$.Observers.Shown(element [,prefix])
+$.Value(element, name [,value])
+$.ValueOf(value)
+$.Width(element, [,width])
 
-jQuery/Data
-jQuery/Height
-jQuery/Value
-jQuery/ValueOf
-jQuery/Width
-Observers/Hidden
-Observers/Mount
-Observers/Resize
-Ui/View => Ui
-Ui/Size
+$().Action(name, ...args)
+$().ActionHandler(name, fn)
+$().Height([height])
+$().Property(name, {value|fn})
+$().Value(name [,value])
+$().Width([width])
+
+ActionHandlers.Hide
+ActionHandlers.Show
+ActionHandlers.Toggle
+
+Ui.Widgets.Accordion
+Ui.Widgets.App
+Ui.Widgets.Bar
+Ui.Widgets.Dialog
+Ui.Widgets.ListView
+Ui.Widgets.PatternLock
+Ui.Widgets.Size
+Ui.Widgets.SplitView
+Ui.Widgets.Tabs
+Ui.Widgets.Ui
+
+
+
+
+
+
+
+
+
+Ui.Widgets.Ui
+	Options
+		disabled
+
+	Methods
+		Hide([effect] [,cb])
+		Toggle([effect] [,cb])
+		Show([effect] [,cb])
+		Update([cb])
+
+		_create
+		_ProcessDataConfigs
+		_triggerHandler
+
+	Events
+		hidden
+		mounted
+		ready
+		shown
+		updated
+
+Ui.Widgets.Size <= Ui.Widgets.Ui
+
+Ui.Widgets.Bar <= ui.Widgets.Ui
+
 
 Ui/Collapsible
 Ui/Bars
